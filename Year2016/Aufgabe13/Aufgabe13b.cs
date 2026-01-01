@@ -10,7 +10,7 @@ internal class Aufgabe13b : IAufgabe
     {
         const int GridSize = 60;
 
-        var input = Utilities.ReadInputAsInt(2016, 13);
+        var input = Utilities.ReadInputAsT<int>(2016, 13);
         _grid = new(GridSize);
         for (int y = 0; y < GridSize; y++)
         {

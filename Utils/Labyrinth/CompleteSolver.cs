@@ -1,15 +1,22 @@
-﻿namespace AdventOfCode.Utils.Labyrinth;
+﻿using System.Runtime.InteropServices;
 
-internal class CompleteSolver : LabyrinthSolver
+namespace AdventOfCode.Utils.Labyrinth;
+
+internal class CompleteSolver
 {
-    protected readonly HashSet<Point> _nextPoints = [];
+    private readonly Grid _grid;
+    private readonly Grid<int?> _length;
+    private readonly HashSet<char> _wall;
+    private readonly HashSet<Point> _nextPoints = [];
 
-    public CompleteSolver(Grid<char> grid) : base(grid)
+    public CompleteSolver(Grid<char> grid)
     {
-
+        _grid = grid;
+        _length = new Grid<int?>(grid.SizeX, grid.SizeY);
+        _wall = ['#'];
     }
 
-    public override void SolveLabyrinth(Point startPoint)
+    public void SolveLabyrinth(Point startPoint)
     {
         int length = 0;
 
@@ -30,6 +37,45 @@ internal class CompleteSolver : LabyrinthSolver
         }
     }
 
+    public void AddWallCharacter(char character)
+    {
+        _wall.Add(character);
+    }
+
+    public bool ContainsLength(Point point)
+    {
+        return _length.GetValue(point).HasValue;
+    }
+
+    public int GetLength(Point point)
+    {
+        var value = _length.GetValue(point);
+        if (value.HasValue)
+        {
+            return value.Value;
+        }
+
+        throw new ArgumentOutOfRangeException($"Der Punkt {point} wurde nicht abgelaufen");
+    }
+
+    public int GetMaxLength()
+    {
+        return _length.Max(x => x.GetValueOrDefault());
+    }
+
+    public bool TryGetLength(Point point, out int length)
+    {
+        var value = _length.GetValue(point);
+        if (value.HasValue)
+        {
+            length = value.Value;
+            return true;
+        }
+
+        length = -1;
+        return false;
+    }
+
     public List<Point> GetFirstStepTo(Point point)
     {
         if (!TryGetLength(point, out int value))
@@ -40,20 +86,31 @@ internal class CompleteSolver : LabyrinthSolver
         return GetFirstStepTo(GetNeighboursWithLength(point, value - 1).ToList(), value - 1);
     }
 
-    private List<Point> GetFirstStepTo(List<Point> points, int length)
+    public IEnumerable<Point> GetWayPoints()
     {
-        if (length == 1)
+        for (int y = 0; y < _length.SizeY; y++)
         {
-            return points;
+            for (int x = 0; x < _length.SizeX; x++)
+            {
+                if (_length.GetValue(x, y).HasValue)
+                {
+                    yield return new(x, y);
+                }
+            }
+        }
+    }
+
+    private bool AddLength(Point point, int length)
+    {
+        var value = _length.GetValue(point);
+
+        if (!value.HasValue || length < value.Value)
+        {
+            _length.SetValue(point, length);
+            return true;
         }
 
-        List<Point> newPoints = new();
-        foreach (var point in points)
-        {
-            newPoints.AddRange(GetNeighboursWithLength(point, length - 1));
-        }
-
-        return GetFirstStepTo(newPoints, length - 1);
+        return false;
     }
 
     private IEnumerable<Point> GetNeighboursWithLength(Point point, int length)
@@ -107,5 +164,21 @@ internal class CompleteSolver : LabyrinthSolver
         }
 
         _nextPoints.Add(point);
+    }
+
+    private List<Point> GetFirstStepTo(List<Point> points, int length)
+    {
+        if (length == 1)
+        {
+            return points;
+        }
+
+        List<Point> newPoints = new();
+        foreach (var point in points)
+        {
+            newPoints.AddRange(GetNeighboursWithLength(point, length - 1));
+        }
+
+        return GetFirstStepTo(newPoints, length - 1);
     }
 }

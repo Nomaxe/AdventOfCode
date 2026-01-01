@@ -147,7 +147,7 @@ internal class CompleteCalc
         if (timespanOutput.TotalSeconds >= 1)
         {
             Console.CursorLeft = PosSeconds;
-            Console.Write($"{timespanOutput.Seconds,2}");
+            Console.Write($"{(int)timespanOutput.TotalSeconds,2}");
         }
 
         if (timespanOutput.TotalMilliseconds >= 1)

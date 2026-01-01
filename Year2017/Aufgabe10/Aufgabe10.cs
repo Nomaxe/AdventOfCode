@@ -9,7 +9,7 @@ internal class Aufgabe10 : IAufgabe
 
     public Aufgabe10()
     {
-        _input = Utilities.ReadInputAsIntList(2017, 10);
+        _input = Utilities.ReadInputAsList<int>(2017, 10, ',');
     }
 
     public string Calc()

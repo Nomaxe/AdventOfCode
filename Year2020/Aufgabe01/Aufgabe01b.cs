@@ -8,7 +8,7 @@ internal class Aufgabe01b : IAufgabe
 
     public Aufgabe01b()
     {
-        _input = Utilities.ReadInputAsIntHashSet(2020, 1);
+        _input = Utilities.ReadInputAsHashSet<int>(2020, 1);
     }
 
     public string Calc()

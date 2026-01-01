@@ -9,7 +9,7 @@ internal class Aufgabe08b : IAufgabe
 
     public Aufgabe08b()
     {
-        _input = Utilities.ReadInputAsIntList(2018, 8, ' ');
+        _input = Utilities.ReadInputAsList<int>(2018, 8, ' ');
     }
 
     public string Calc()

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace AdventOfCode.Utils.Labyrinth;
 
-internal abstract class LabyrinthSolver : ILabyrinthSolver
+internal abstract class LabyrinthSolver
 
 {
     protected Grid<char> _grid;
@@ -59,14 +59,4 @@ internal abstract class LabyrinthSolver : ILabyrinthSolver
     }
 
     public abstract void SolveLabyrinth(Point startPoint);
-
-    public IEnumerator<Point> GetEnumerator()
-    {
-        return _length.Keys.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
 }

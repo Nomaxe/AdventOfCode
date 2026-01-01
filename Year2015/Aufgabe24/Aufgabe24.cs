@@ -10,7 +10,7 @@ internal class Aufgabe24 : IAufgabe
 
     public Aufgabe24()
     {
-        _input = Utilities.ReadInputAsIntArray(2015, 24);
+        _input = Utilities.ReadInputAsArray<int>(2015, 24);
         _groupSum = _input.Sum() / 3;
     }
 

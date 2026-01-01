@@ -8,7 +8,7 @@ internal class Aufgabe19 : IAufgabe
 
     public Aufgabe19()
     {
-        var input = Utilities.ReadInputAsInt(2016, 19);
+        var input = Utilities.ReadInputAsT<int>(2016, 19);
         _list = new(Enumerable.Range(1, input));
     }
 

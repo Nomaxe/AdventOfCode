@@ -10,7 +10,7 @@ internal class Aufgabe04 : IAufgabe
     public Aufgabe04()
     {
         var input = Utilities.ReadInput(2021, 4);
-        _numbers = input[0].ToIntList();
+        _numbers = input[0].ToList<int>(',');
         _grids = [];
 
         for (int i = 2; i < input.Length; i += 6)
@@ -79,7 +79,7 @@ internal class Aufgabe04 : IAufgabe
         return false;
     }
 
-    private static int GetScoreOfGrid(Grid<int> numbers, GridBool drawn)
+    private static int GetScoreOfGrid(GridInt numbers, GridBool drawn)
     {
         int score = 0;
 

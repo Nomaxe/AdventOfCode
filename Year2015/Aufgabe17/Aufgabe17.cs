@@ -9,7 +9,7 @@ internal class Aufgabe17 : IAufgabe
 
     public Aufgabe17()
     {
-        _input = Utilities.ReadInputAsIntArray(2015, 17);
+        _input = Utilities.ReadInputAsArray<int>(2015, 17);
     }
 
     public string Calc()

@@ -9,7 +9,7 @@ internal class Aufgabe14 : IAufgabe
 
     public Aufgabe14()
     {
-        _skipValues = Utilities.ReadInputAsInt(2018, 14);
+        _skipValues = Utilities.ReadInputAsT<int>(2018, 14);
         _list = [3, 7];
     }
 

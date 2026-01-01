@@ -9,7 +9,7 @@ internal class Aufgabe17b : IAufgabe
 
     public Aufgabe17b()
     {
-        _input = Utilities.ReadInputAsIntArray(2015, 17);
+        _input = Utilities.ReadInputAsArray<int>(2015, 17);
         _counter = new();
     }
 

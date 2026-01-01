@@ -6,7 +6,7 @@ namespace AdventOfCode.Year2024;
 internal class Aufgabe20b : IAufgabe
 {
     private readonly Grid<char> _grid;
-    private readonly ILabyrinthSolver _solver;
+    private readonly CompleteSolver _solver;
     private readonly Point _startPoint;
 
     private readonly HashSet<(Point Start, Point End)> _cheatingAmount = [];
@@ -23,7 +23,7 @@ internal class Aufgabe20b : IAufgabe
     {
         _solver.SolveLabyrinth(_startPoint);
 
-        foreach (var pathPoint in _solver)
+        foreach (var pathPoint in _solver.GetWayPoints())
         {
             for (int x = 0; x <= 20; x++)
             {

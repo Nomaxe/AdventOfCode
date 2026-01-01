@@ -10,7 +10,7 @@ internal class Aufgabe04b : IAufgabe
     public Aufgabe04b()
     {
         var input = Utilities.ReadInput(2021, 4);
-        _numbers = input[0].ToIntList();
+        _numbers = input[0].ToList<int>(',');
         _grids = [];
 
         for (int i = 2; i < input.Length; i += 6)

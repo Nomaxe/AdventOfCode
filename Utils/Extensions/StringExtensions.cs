@@ -72,13 +72,14 @@ public static partial class StringExtensions
         return int.Parse(s[offset..(offset + length)]);
     }
 
-    public static List<int> ToIntList(this string s)
+    public static List<T> ToList<T>(this string s, char seperator)
     {
-        var split = s.Split(',');
-        List<int> list = new(s.Length);
+        var split = s.Split(seperator);
+        List<T> list = new(s.Length);
+        var type = typeof(T);
         foreach (var item in split)
         {
-            list.Add(int.Parse(item));
+            list.Add((T)Convert.ChangeType(item, type));
         }
 
         return list;

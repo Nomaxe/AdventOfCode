@@ -12,49 +12,59 @@ internal static class Utilities
         return ReadInput(year, day)[0];
     }
 
-    public static int[] ReadInputAsIntArray(int year, int day)
+    public static List<T> ReadInputAsList<T>(int year, int day)
     {
         var input = ReadInput(year, day);
 
-        var array = new int[input.Length];
-        for (int i = 0; i < input.Length; i++)
+        List<T> list = new(input.Length);
+        var type = typeof(T);
+
+        foreach (var line in input)
         {
-            array[i] = int.Parse(input[i]);
-        }
-
-        return array;
-    }
-
-    public static List<int> ReadInputAsIntList(int year, int day, char seperator = ',')
-    {
-        var input = ReadInput(year, day);
-
-        var split = input[0].Split(seperator);
-        List<int> list = new(split.Length);
-
-        foreach (var number in split)
-        {
-            list.Add(int.Parse(number));
+            list.Add((T)Convert.ChangeType(line, type));
         }
 
         return list;
     }
 
-    public static HashSet<int> ReadInputAsIntHashSet(int year, int day)
+    public static List<T> ReadInputAsList<T>(int year, int day, char seperator)
+    {
+        var input = ReadInputAsString(year, day);
+        return input.ToList<T>(seperator);
+    }
+
+    public static T[] ReadInputAsArray<T>(int year, int day)
     {
         var input = ReadInput(year, day);
 
-        HashSet<int> hashset = new(input.Length);
+        var array = new T[input.Length];
+        var type = typeof(T);
+
         for (int i = 0; i < input.Length; i++)
         {
-            hashset.Add(int.Parse(input[i]));
+            array[i] = (T)Convert.ChangeType(input[i], type);
+        }
+
+        return array;
+    }
+
+    public static HashSet<T> ReadInputAsHashSet<T>(int year, int day)
+    {
+        var input = ReadInput(year, day);
+
+        HashSet<T> hashset = new(input.Length);
+        var type = typeof(T);
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            hashset.Add((T)Convert.ChangeType(input[i], type));
         }
 
         return hashset;
     }
 
-    public static int ReadInputAsInt(int year, int day)
+    public static T ReadInputAsT<T>(int year, int day)
     {
-        return int.Parse(ReadInput(year, day)[0]);
+        return (T)Convert.ChangeType(ReadInputAsString(year, day), typeof(T));
     }
 }
