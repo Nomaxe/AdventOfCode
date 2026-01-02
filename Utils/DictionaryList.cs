@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace AdventOfCode.Utils;
@@ -53,6 +54,11 @@ internal class DictionaryList<TKey, TItem> : IEnumerable<KeyValuePair<TKey, List
         {
             keyValuePair.Value.Remove(item);
         }
+    }
+
+    public bool TryGetValue(TKey key, [NotNullWhen(true)] out List<TItem>? item)
+    {
+        return _items.TryGetValue(key, out item);
     }
 
     public IEnumerator<KeyValuePair<TKey, List<TItem>>> GetEnumerator()

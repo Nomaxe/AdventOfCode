@@ -2,13 +2,16 @@
 
 internal static class LinkedListExtensions
 {
-    internal static LinkedListNode<T> GetNext<T>(this LinkedListNode<T> node, LinkedList<T> list)
+    extension<T>(LinkedListNode<T> node)
     {
-        return node.Next ?? list.First ?? throw new NullReferenceException();
-    }
+        internal LinkedListNode<T> GetNext(LinkedList<T> list)
+        {
+            return node.Next ?? list.First ?? throw new NullReferenceException();
+        }
 
-    internal static LinkedListNode<T> GetPrevious<T>(this LinkedListNode<T> node, LinkedList<T> list)
-    {
-        return node.Previous ?? list.Last ?? throw new NullReferenceException();
+        internal LinkedListNode<T> GetPrevious(LinkedList<T> list)
+        {
+            return node.Previous ?? list.Last ?? throw new NullReferenceException();
+        }
     }
 }

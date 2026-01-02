@@ -1,12 +1,15 @@
 ﻿namespace AdventOfCode.Utils;
 
-internal static class HashSetExtensions
+internal static partial class HashSetExtensions
 {
-    public static void AddRange<T>(this HashSet<T> set, IEnumerable<T> elements)
+    extension<T>(HashSet<T> set)
     {
-        foreach (var element in elements)
+        public void AddRange(IEnumerable<T> elements)
         {
-            set.Add(element);
+            foreach (var element in elements)
+            {
+                set.Add(element);
+            }
         }
     }
 }

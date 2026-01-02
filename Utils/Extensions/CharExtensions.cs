@@ -2,22 +2,25 @@
 
 namespace AdventOfCode.Utils;
 
-internal static class CharExtensions
+internal static partial class CharExtensions
 {
-    internal static int ToNumber(this char character)
+    extension(char character)
     {
-        return character - '0';
-    }
-
-    internal static Direction ToDirection(this char character)
-    {
-        return character switch
+        internal int ToNumber()
         {
-            'R' => Direction.Right,
-            'D' => Direction.Down,
-            'L' => Direction.Left,
-            'U' => Direction.Up,
-            _ => throw new NotImplementedException()
-        };
+            return character - '0';
+        }
+
+        internal Direction ToDirection()
+        {
+            return character switch
+            {
+                'R' => Direction.Right,
+                'D' => Direction.Down,
+                'L' => Direction.Left,
+                'U' => Direction.Up,
+                _ => throw new NotImplementedException()
+            };
+        }
     }
 }
