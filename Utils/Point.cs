@@ -27,7 +27,7 @@ internal readonly struct Point : IComparable<Point>
         Y = input[1];
     }
 
-    public Point[] GetNeighbours()
+    public readonly Point[] GetNeighbours()
     {
         return
         [
@@ -38,7 +38,7 @@ internal readonly struct Point : IComparable<Point>
         ];
     }
 
-    public Point[] GetFullNeighbours()
+    public readonly Point[] GetFullNeighbours()
     {
         return
         [
@@ -53,39 +53,74 @@ internal readonly struct Point : IComparable<Point>
         ];
     }
 
-    public bool IsNeighbour(Point other)
+    public readonly bool IsNeighbour(Point other)
     {
         return int.Abs(X - other.X) + int.Abs(Y - other.Y) == 1;
     }
 
-    public bool IsFullNeighbour(Point other)
+    public readonly bool IsFullNeighbour(Point other)
     {
         return int.Abs(X - other.X) <= 1 && int.Abs(Y - other.Y) <= 1;
     }
 
-    public Point Move(Direction direction)
+    public readonly Point Move(Direction direction)
     {
         return Move(direction, 1);
     }
 
-    public Point Move(Direction direction, int amount)
+    public readonly Point Move(Direction direction, int amount)
     {
         return direction switch
         {
-            Direction.Right => new(X + amount, Y),
-            Direction.Down => new(X, Y + amount),
-            Direction.Left => new(X - amount, Y),
-            Direction.Up => new(X, Y - amount),
+            Direction.Right => MoveRight(amount),
+            Direction.Down => MoveDown(amount),
+            Direction.Left => MoveLeft(amount),
+            Direction.Up => MoveUp(amount),
             _ => throw new NotImplementedException(),
         };
     }
 
-    public override int GetHashCode()
+    public readonly Point MoveRight(int amount)
+    {
+        return new(X + amount, Y);
+    }
+
+    public readonly Point MoveDown(int amount)
+    {
+        return new(X, Y + amount);
+    }
+
+    public readonly Point MoveLeft(int amount)
+    {
+        return new(X - amount, Y);
+    }
+
+    public readonly Point MoveUp(int amount)
+    {
+        return new(X, Y - amount);
+    }
+
+    public readonly Point RotateRight()
+    {
+        return new(-Y, X);
+    }
+
+    public readonly Point RotateLeft()
+    {
+        return new(Y, -X);
+    }
+
+    public readonly Point Rotate180()
+    {
+        return new(-X, -Y);
+    }
+
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(X, Y);
     }
 
-    public override bool Equals([NotNullWhen(true)] object? obj)
+    public readonly override bool Equals([NotNullWhen(true)] object? obj)
     {
         if (obj is Point other)
         {
@@ -95,28 +130,28 @@ internal readonly struct Point : IComparable<Point>
         return false;
     }
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"X={X},Y={Y}";
     }
 
-    public string ToShortString()
+    public readonly string ToShortString()
     {
         return $"{X},{Y}";
     }
 
-    public int GetManhattenDistanceToZero()
+    public readonly int GetManhattenDistanceToZero()
     {
         return int.Abs(X) + int.Abs(Y);
     }
 
-    public int GetManhattenDistance(Point other)
+    public readonly int GetManhattenDistance(Point other)
     {
         return int.Abs(int.Max(X, other.X) - int.Min(X, other.X)) +
                int.Abs(int.Max(Y, other.Y) - int.Min(Y, other.Y));
     }
 
-    public int CompareTo(Point other)
+    public readonly int CompareTo(Point other)
     {
         var compare = Y.CompareTo(other.Y);
         if (compare != 0)

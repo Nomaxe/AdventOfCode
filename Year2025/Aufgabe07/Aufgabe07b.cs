@@ -36,7 +36,7 @@ internal class Aufgabe07b : IAufgabe
         var timelineCounter = _timelineCounter[point];
 
         //Die Split-Stellen sind immer 2 unter dem aktuellen Punkt
-        point = point.Move(Direction.Down, 2);
+        point = point.MoveDown(2);
 
         if (point.Y >= _grid.SizeY)
         {
