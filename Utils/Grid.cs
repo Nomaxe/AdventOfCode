@@ -4,6 +4,7 @@ using System.Data;
 namespace AdventOfCode.Utils;
 
 internal partial class Grid<T> : IEnumerable<T>
+                               where T : notnull
 {
     private readonly T[,] _map;
 

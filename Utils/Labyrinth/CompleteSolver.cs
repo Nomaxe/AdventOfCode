@@ -5,14 +5,14 @@ namespace AdventOfCode.Utils.Labyrinth;
 internal class CompleteSolver
 {
     private readonly Grid _grid;
-    private readonly Grid<int?> _length;
+    private readonly Grid<int> _length;
     private readonly HashSet<char> _wall;
     private readonly HashSet<Point> _nextPoints = [];
 
     public CompleteSolver(Grid<char> grid)
     {
         _grid = grid;
-        _length = new Grid<int?>(grid.SizeX, grid.SizeY);
+        _length = new Grid<int>(grid.SizeX, grid.SizeY);
         _wall = ['#'];
     }
 
@@ -44,31 +44,25 @@ internal class CompleteSolver
 
     public bool ContainsLength(Point point)
     {
-        return _length.GetValue(point).HasValue;
+        return _length.GetValue(point) > 0;
     }
 
     public int GetLength(Point point)
     {
-        var value = _length.GetValue(point);
-        if (value.HasValue)
-        {
-            return value.Value;
-        }
-
-        throw new ArgumentOutOfRangeException($"Der Punkt {point} wurde nicht abgelaufen");
+        return _length.GetValue(point);
     }
 
     public int GetMaxLength()
     {
-        return _length.Max(x => x.GetValueOrDefault());
+        return _length.Max();
     }
 
     public bool TryGetLength(Point point, out int length)
     {
         var value = _length.GetValue(point);
-        if (value.HasValue)
+        if (value > 0)
         {
-            length = value.Value;
+            length = value;
             return true;
         }
 
@@ -92,7 +86,7 @@ internal class CompleteSolver
         {
             for (int x = 0; x < _length.SizeX; x++)
             {
-                if (_length.GetValue(x, y).HasValue)
+                if (_length.GetValue(x, y) > 0)
                 {
                     yield return new(x, y);
                 }
@@ -104,7 +98,7 @@ internal class CompleteSolver
     {
         var value = _length.GetValue(point);
 
-        if (!value.HasValue || length < value.Value)
+        if (value == 0 || length < value)
         {
             _length.SetValue(point, length);
             return true;

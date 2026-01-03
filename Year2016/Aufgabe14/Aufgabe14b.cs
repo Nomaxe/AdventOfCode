@@ -17,11 +17,13 @@ internal partial class Aufgabe14b : IAufgabe
 
     private const int PrecalcArraySize = 1000;
 
+#pragma warning disable CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Fügen Sie ggf. den „erforderlichen“ Modifizierer hinzu, oder deklarieren Sie den Modifizierer als NULL-Werte zulassend.
     public Aufgabe14b()
     {
         _salt = Utilities.ReadInput(2016, 14)[0];
         _pool = ArrayPool<string>.Create();
     }
+#pragma warning restore CS8618
 
     public string Calc()
     {
