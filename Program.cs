@@ -4,7 +4,7 @@ using AdventOfCode.Utils;
 #if DEBUG
 checked
 {
-    Aufgabe12b aufgabe = new();
+    Aufgabe13b aufgabe = new();
     Console.WriteLine(aufgabe.Calc());
 }
 #else
