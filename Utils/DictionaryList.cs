@@ -43,6 +43,11 @@ internal class DictionaryList<TKey, TItem> : IEnumerable<KeyValuePair<TKey, List
         list ??= [];
     }
 
+    public void RemoveFirstItem(TKey key)
+    {
+        _items[key].RemoveAt(0);
+    }
+
     public bool RemoveAll(TKey key)
     {
         return _items.Remove(key);

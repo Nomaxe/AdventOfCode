@@ -48,6 +48,12 @@ internal static class Utilities
         return array;
     }
 
+    public static T[] ReadInputAsArray<T>(int year, int day, char seperator)
+    {
+        var input = ReadInputAsString(year, day);
+        return input.ToArray<T>(seperator);
+    }
+
     public static HashSet<T> ReadInputAsHashSet<T>(int year, int day)
     {
         var input = ReadInput(year, day);

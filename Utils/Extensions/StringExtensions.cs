@@ -88,6 +88,20 @@ public static partial class StringExtensions
             return list;
         }
 
+        public T[] ToArray<T>(char seperator)
+        {
+            var split = s.Split(seperator);
+            T[] array = new T[split.Length];
+            var type = typeof(T);
+
+            for (int i = 0; i < split.Length; i++)
+            {
+                array[i] = (T)Convert.ChangeType(split[i], type);
+            }
+
+            return array;
+        }
+
         public bool IsLowerCase()
         {
             return s.All(char.IsLower);
