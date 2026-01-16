@@ -27,13 +27,7 @@ internal class Aufgabe16b : IAufgabe
         {
             if (string.IsNullOrEmpty(_input[i]))
             {
-                do
-                {
-                    foreach (var op in _opcodes.Where(x => x.Value.Count == 1))
-                    {
-                        _opcodes.RemoveItemAtAllKeysExcept(op.Key, op.Value.First());
-                    }
-                } while (_opcodes.Any(x => x.Value.Count > 1));
+                _opcodes.RemoveDuplicatesUntilSingleItem();
 
                 index = i;
                 break;

@@ -32,10 +32,7 @@ internal class DictionaryHashSet<TKey, TItem> : IEnumerable<KeyValuePair<TKey, H
     {
         ref var list = ref CollectionsMarshal.GetValueRefOrAddDefault(_items, key, out _);
         list ??= [];
-        foreach (var item in items)
-        {
-            list.Add(item);
-        }
+        list.AddRange(items);
     }
 
     public bool Remove(TKey key, TItem item)
@@ -70,6 +67,29 @@ internal class DictionaryHashSet<TKey, TItem> : IEnumerable<KeyValuePair<TKey, H
     public bool RemoveAll(TKey key)
     {
         return _items.Remove(key);
+    }
+
+    public void RemoveDuplicatesUntilSingleItem()
+    {
+        Queue<TItem> queue = new();
+        foreach (var item in _items.Where(x => x.Value.Count == 1))
+        {
+            queue.Enqueue(item.Value.First());
+        }
+
+        while (queue.Count > 0)
+        {
+            var removeItem = queue.Dequeue();
+
+            foreach (var item in _items.Where(x => x.Value.Count > 1))
+            {
+                item.Value.Remove(removeItem);
+                if (item.Value.Count == 1)
+                {
+                    queue.Enqueue(item.Value.First());
+                }
+            }
+        }
     }
 
     public void RemoveItemAtAllKeysExcept(TKey key, TItem item)
