@@ -69,6 +69,11 @@ internal class DictionaryCounter<TKey> : IEnumerable<KeyValuePair<TKey, int>>
         }
     }
 
+    public void AddKey(TKey key)
+    {
+        CollectionsMarshal.GetValueRefOrAddDefault(_items, key, out _);
+    }
+
     public void Decrease(TKey item)
     {
         Decrease(item, 1);

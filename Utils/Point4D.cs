@@ -34,6 +34,103 @@ internal readonly struct Point4D
         D = input[3];
     }
 
+    public readonly Point4D[] GetNeighbours()
+    {
+        return
+        [
+            new(A + 1, B, C, D),
+            new(A + 1, B + 1, C, D),
+            new(A + 1, B - 1, C, D),
+            new(A, B + 1, C, D),
+            new(A, B - 1, C, D),
+            new(A - 1, B + 1, C, D),
+            new(A - 1, B, C, D),
+            new(A - 1, B - 1, C, D),
+
+            new(A + 1, B, C - 1, D),
+            new(A + 1, B + 1, C - 1, D),
+            new(A + 1, B - 1, C - 1, D),
+            new(A, B + 1, C - 1, D),
+            new(A, B, C - 1, D),
+            new(A, B - 1, C - 1, D),
+            new(A - 1, B + 1, C - 1, D),
+            new(A - 1, B, C - 1, D),
+            new(A - 1, B - 1, C - 1, D),
+
+            new(A + 1, B, C + 1, D),
+            new(A + 1, B + 1, C + 1, D),
+            new(A + 1, B - 1, C + 1, D),
+            new(A, B + 1, C + 1, D),
+            new(A, B, C + 1, D),
+            new(A, B - 1, C + 1, D),
+            new(A - 1, B + 1, C + 1, D),
+            new(A - 1, B, C + 1, D),
+            new(A - 1, B - 1, C + 1, D),
+
+
+            new(A + 1, B, C, D + 1),
+            new(A + 1, B + 1, C, D + 1),
+            new(A + 1, B - 1, C, D + 1),
+            new(A, B + 1, C, D + 1),
+            new(A, B, C, D + 1),
+            new(A, B - 1, C, D + 1),
+            new(A - 1, B + 1, C, D + 1),
+            new(A - 1, B, C, D + 1),
+            new(A - 1, B - 1, C, D + 1),
+
+            new(A + 1, B, C - 1, D + 1),
+            new(A + 1, B + 1, C - 1, D + 1),
+            new(A + 1, B - 1, C - 1, D + 1),
+            new(A, B + 1, C - 1, D + 1),
+            new(A, B, C - 1, D + 1),
+            new(A, B - 1, C - 1, D + 1),
+            new(A - 1, B + 1, C - 1, D + 1),
+            new(A - 1, B, C - 1, D + 1),
+            new(A - 1, B - 1, C - 1, D + 1),
+
+            new(A + 1, B, C + 1, D + 1),
+            new(A + 1, B + 1, C + 1, D + 1),
+            new(A + 1, B - 1, C + 1, D + 1),
+            new(A, B + 1, C + 1, D + 1),
+            new(A, B, C + 1, D + 1),
+            new(A, B - 1, C + 1, D + 1),
+            new(A - 1, B + 1, C + 1, D + 1),
+            new(A - 1, B, C + 1, D + 1),
+            new(A - 1, B - 1, C + 1, D + 1),
+
+
+            new(A + 1, B, C, D - 1),
+            new(A + 1, B + 1, C, D - 1),
+            new(A + 1, B - 1, C, D - 1),
+            new(A, B + 1, C, D - 1),
+            new(A, B, C, D - 1),
+            new(A, B - 1, C, D - 1),
+            new(A - 1, B + 1, C, D - 1),
+            new(A - 1, B, C, D - 1),
+            new(A - 1, B - 1, C, D - 1),
+
+            new(A + 1, B, C - 1, D - 1),
+            new(A + 1, B + 1, C - 1, D - 1),
+            new(A + 1, B - 1, C - 1, D - 1),
+            new(A, B + 1, C - 1, D - 1),
+            new(A, B, C - 1, D - 1),
+            new(A, B - 1, C - 1, D - 1),
+            new(A - 1, B + 1, C - 1, D - 1),
+            new(A - 1, B, C - 1, D - 1),
+            new(A - 1, B - 1, C - 1, D - 1),
+
+            new(A + 1, B, C + 1, D - 1),
+            new(A + 1, B + 1, C + 1, D - 1),
+            new(A + 1, B - 1, C + 1, D - 1),
+            new(A, B + 1, C + 1, D - 1),
+            new(A, B, C + 1, D - 1),
+            new(A, B - 1, C + 1, D - 1),
+            new(A - 1, B + 1, C + 1, D - 1),
+            new(A - 1, B, C + 1, D - 1),
+            new(A - 1, B - 1, C + 1, D - 1),
+        ];
+    }
+
     public override int GetHashCode()
     {
         return HashCode.Combine(A, B, C, D);

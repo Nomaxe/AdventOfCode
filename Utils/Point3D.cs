@@ -30,6 +30,41 @@ internal readonly struct Point3D
         Z = input[2];
     }
 
+    public readonly Point3D[] GetNeighbours()
+    {
+        return
+        [
+            new(X + 1, Y, Z),
+            new(X + 1, Y + 1, Z),
+            new(X + 1, Y - 1, Z),
+            new(X, Y + 1, Z),
+            new(X, Y - 1, Z),
+            new(X - 1, Y + 1, Z),
+            new(X - 1, Y, Z),
+            new(X - 1, Y - 1, Z),
+
+            new(X + 1, Y, Z - 1),
+            new(X + 1, Y + 1, Z - 1),
+            new(X + 1, Y - 1, Z - 1),
+            new(X, Y + 1, Z - 1),
+            new(X, Y, Z - 1),
+            new(X, Y - 1, Z - 1),
+            new(X - 1, Y + 1, Z - 1),
+            new(X - 1, Y, Z - 1),
+            new(X - 1, Y - 1, Z - 1),
+
+            new(X + 1, Y, Z + 1),
+            new(X + 1, Y + 1, Z + 1),
+            new(X + 1, Y - 1, Z + 1),
+            new(X, Y + 1, Z + 1),
+            new(X, Y, Z + 1),
+            new(X, Y - 1, Z + 1),
+            new(X - 1, Y + 1, Z + 1),
+            new(X - 1, Y, Z + 1),
+            new(X - 1, Y - 1, Z + 1),
+        ];
+    }
+
     public Point3D Move(Point3D point)
     {
         return new(X + point.X, Y + point.Y, Z + point.Z);
