@@ -4,15 +4,20 @@ namespace AdventOfCode.Year2020;
 
 internal class Aufgabe19 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Dictionary<int, List<string>> _rules = [];
     private readonly List<string> _checkStrings = [];
 
     public Aufgabe19()
     {
-        var input = Utilities.ReadInput(2020, 19);
+        _input = Utilities.ReadInput(2020, 19);
+    }
+
+    public string Calc()
+    {
         bool whiteline = false;
         List<(int Id, List<List<int>> Rules)> remaining = [];
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             if (string.IsNullOrEmpty(line))
             {
@@ -74,10 +79,8 @@ internal class Aufgabe19 : IAufgabe
 
             remaining = nextRemaining;
         }
-    }
 
-    public string Calc()
-    {
+
         int result = 0;
         var hashset = _rules[0].ToHashSet();
 
