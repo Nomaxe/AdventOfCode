@@ -4,7 +4,11 @@ internal partial class Grid<T>
 {
     public static Grid CreateCharGrid(int year, int day)
     {
-        var input = Utilities.ReadInput(year, day);
+        return CreateCharGrid(Utilities.ReadInput(year, day));
+    }
+
+    public static Grid CreateCharGrid(string[] input)
+    {
         Grid<char> grid = new(input[0].Length, input.Length);
         for (int y = 0; y < grid.SizeY; y++)
         {
