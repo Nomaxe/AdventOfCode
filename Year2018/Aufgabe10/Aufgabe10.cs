@@ -50,10 +50,6 @@ internal class Aufgabe10 : IAufgabe
                 grid.SetValue(light.PositionX, light.PositionY, '#');
             }
         }
-
-#if DEBUG
-        grid.Draw();
-#endif
     }
 
     private class Light

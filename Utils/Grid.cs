@@ -192,6 +192,114 @@ internal partial class Grid<T> : IEnumerable<T>
         return this.Contains(value);
     }
 
+    public void CopyValuesOfGrid(Grid<T> otherGrid, int xStart, int yStart)
+    {
+        CopyValuesOfGrid(otherGrid, xStart, yStart, 0, 0, otherGrid.SizeX, otherGrid.SizeY);
+    }
+
+    public void CopyValuesOfGrid(Grid<T> otherGrid, int xStart, int yStart, int startSubGrid, int length)
+    {
+        CopyValuesOfGrid(otherGrid, xStart, yStart, startSubGrid, startSubGrid, length, length);
+    }
+
+    public void CopyValuesOfGrid(Grid<T> otherGrid, int xStart, int yStart, int xStartSubGrid, int yStartSubGrid, int xLength, int yLength)
+    {
+        for (int y = 0; y < yLength; y++)
+        {
+            for (int x = 0; x < xLength; x++)
+            {
+                var value = otherGrid.GetValue(xStartSubGrid + x, yStartSubGrid + y);
+                SetValue(xStart + x, yStart + y, value);
+            }
+        }
+    }
+
+    public Grid<T> RotateLeft()
+    {
+        Grid<T> newGrid = new(SizeX, SizeY);
+
+        for (int y = 0; y < SizeY; y++)
+        {
+            for (int x = 0; x < SizeX; x++)
+            {
+                var value = GetValue(x, y);
+                newGrid.SetValue(y, SizeX - x - 1, value);
+            }
+        }
+
+        return newGrid;
+    }
+
+    public Grid<T> RotateRight()
+    {
+        Grid<T> newGrid = new(SizeX, SizeY);
+
+        for (int y = 0; y < SizeY; y++)
+        {
+            for (int x = 0; x < SizeX; x++)
+            {
+                var value = GetValue(x, y);
+                newGrid.SetValue(SizeY - y - 1, x, value);
+            }
+        }
+
+        return newGrid;
+    }
+
+    public Grid<T> Rotate180()
+    {
+        Grid<T> newGrid = new(SizeX, SizeY);
+
+        for (int y = 0; y < SizeY; y++)
+        {
+            for (int x = 0; x < SizeX; x++)
+            {
+                var value = GetValue(x, y);
+                newGrid.SetValue(SizeX - x - 1, SizeY - y - 1, value);
+            }
+        }
+
+        return newGrid;
+    }
+
+    public Grid<T> FlipHorizontal()
+    {
+        Grid<T> newGrid = new(SizeX, SizeY);
+
+        for (int y = 0; y < SizeY / 2; y++)
+        {
+            for (int x = 0; x < SizeX; x++)
+            {
+                var value = GetValue(x, y);
+                newGrid.SetValue(x, SizeY - y - 1, value);
+
+                value = GetValue(x, SizeY - y - 1);
+                newGrid.SetValue(x, y, value);
+            }
+        }
+
+        return newGrid;
+    }
+
+    public Grid<T> FlipVertical()
+    {
+        Grid<T> newGrid = new(SizeX, SizeY);
+
+        for (int y = 0; y < SizeY; y++)
+        {
+            for (int x = 0; x < SizeX / 2; x++)
+            {
+                var value = GetValue(x, y);
+                newGrid.SetValue(SizeX - x - 1, y, value);
+
+                value = GetValue(SizeX - x - 1, y);
+                newGrid.SetValue(x, y, value);
+            }
+        }
+
+        return newGrid;
+    }
+
     public void Draw()
     {
         Draw(0, SizeX, 0, SizeY);

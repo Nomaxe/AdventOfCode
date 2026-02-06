@@ -106,6 +106,13 @@ public static partial class StringExtensions
         {
             return s.All(char.IsLower);
         }
+
+        public string Reverse()
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
     }
 
     [GeneratedRegex(@"(-?\d+)")]
