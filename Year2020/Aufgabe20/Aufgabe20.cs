@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AdventOfCode.Year2020;
 
-internal class Aufgabe20 : IAufgabe
+internal class Aufgabe20 : IAufgabe 
 {
     private readonly string[] _input;
     private readonly DictionaryList<int, string> _tiles;
