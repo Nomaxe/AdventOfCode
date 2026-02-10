@@ -100,6 +100,19 @@ internal class DictionaryHashSet<TKey, TItem> : IEnumerable<KeyValuePair<TKey, H
         }
     }
 
+    public void IntersectWith(TKey key, IEnumerable<TItem> hashset)
+    {
+        ref var list = ref CollectionsMarshal.GetValueRefOrAddDefault(_items, key, out _);
+        if (list is not null)
+        {
+            list.IntersectWith(hashset);
+        }
+        else
+        {
+            list = [];
+        }
+    }
+
     public IEnumerable<TItem> GetItems(TKey key)
     {
         if (_items.TryGetValue(key, out var list))
@@ -115,6 +128,11 @@ internal class DictionaryHashSet<TKey, TItem> : IEnumerable<KeyValuePair<TKey, H
         return _items.Where(x => x.Value.Contains(item)).Select(x => x.Key);
     }
 
+    public IEnumerable<TItem> GetAllItems()
+    {
+        return _items.Values.SelectMany(x => x);
+    }
+
     public bool Contains(TKey key, TItem item)
     {
         if (_items.TryGetValue(key, out var list))
@@ -123,6 +141,11 @@ internal class DictionaryHashSet<TKey, TItem> : IEnumerable<KeyValuePair<TKey, H
         }
 
         return false;
+    }
+
+    public bool ContainsKey(TKey key)
+    {
+        return _items.ContainsKey(key);
     }
 
     public IEnumerator<KeyValuePair<TKey, HashSet<TItem>>> GetEnumerator()
