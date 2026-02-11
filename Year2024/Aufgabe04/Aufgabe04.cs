@@ -4,26 +4,32 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe04 : IAufgabe
 {
+    private readonly string[] _input;
+
+    public Aufgabe04()
+    {
+        _input = Utilities.ReadInput(2024, 4);
+    }
+
     public string Calc()
     {
-        var input = Utilities.ReadInput(2024, 4);
         int result = 0;
 
         //Horizontal
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             result += line.Split("XMAS").Length - 1;
             result += line.Split("SAMX").Length - 1;
         }
 
         //Vertical
-        for (int i = 0; i < input.Length; i++)
+        for (int i = 0; i < _input.Length; i++)
         {
             string line = "";
 
-            for (int j = 0; j < input.Length; j++)
+            for (int j = 0; j < _input.Length; j++)
             {
-                line += input[j][i];
+                line += _input[j][i];
             }
 
             result += line.Split("XMAS").Length - 1;
@@ -31,13 +37,13 @@ internal class Aufgabe04 : IAufgabe
         }
 
         //Diagonal oben rechts unten
-        for (int i = 0; i < input.Length; i++)
+        for (int i = 0; i < _input.Length; i++)
         {
             string line = "";
 
-            for (int j = 0; i + j < input.Length; j++)
+            for (int j = 0; i + j < _input.Length; j++)
             {
-                line += input[j][i + j];
+                line += _input[j][i + j];
             }
 
             result += line.Split("XMAS").Length - 1;
@@ -45,13 +51,13 @@ internal class Aufgabe04 : IAufgabe
         }
 
         //Diagonal links rechts unten
-        for (int i = 1; i < input.Length; i++)
+        for (int i = 1; i < _input.Length; i++)
         {
             string line = "";
 
-            for (int j = 0; i + j < input.Length; j++)
+            for (int j = 0; i + j < _input.Length; j++)
             {
-                line += input[i + j][j];
+                line += _input[i + j][j];
             }
 
             result += line.Split("XMAS").Length - 1;
@@ -59,13 +65,13 @@ internal class Aufgabe04 : IAufgabe
         }
 
         //Diagonal oben links unten
-        for (int i = 0; i < input.Length; i++)
+        for (int i = 0; i < _input.Length; i++)
         {
             string line = "";
 
             for (int j = 0; i - j >= 0; j++)
             {
-                line += input[j][i - j];
+                line += _input[j][i - j];
             }
 
             result += line.Split("XMAS").Length - 1;
@@ -73,13 +79,13 @@ internal class Aufgabe04 : IAufgabe
         }
 
         //Diagonal rechts links unten
-        for (int i = 1; i < input.Length; i++)
+        for (int i = 1; i < _input.Length; i++)
         {
             string line = "";
 
-            for (int j = 0; i + j < input.Length; j++)
+            for (int j = 0; i + j < _input.Length; j++)
             {
-                line += input[i + j][input.Length - j - 1];
+                line += _input[i + j][_input.Length - j - 1];
             }
 
             result += line.Split("XMAS").Length - 1;

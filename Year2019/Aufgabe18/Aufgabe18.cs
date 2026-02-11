@@ -16,15 +16,16 @@ internal class Aufgabe18 : IAufgabe
     {
         _grid = Grid.CreateCharGrid(2019, 18);
         _keyPositions = new Point[highestKey - 'a' + 1];
-        for (int i = 'a'; i <= highestKey; i++)
-        {
-            _keyPositions[i - 'a'] = _grid.GetPointOfValue((char)i);
-        }
         _cache = new();
     }
 
     public string Calc()
     {
+        for (int i = 'a'; i <= highestKey; i++)
+        {
+            _keyPositions[i - 'a'] = _grid.GetPointOfValue((char)i);
+        }
+
         Point currentPoint = _grid.GetPointOfValue('@');
         _grid.SetValue(currentPoint, '.');
 

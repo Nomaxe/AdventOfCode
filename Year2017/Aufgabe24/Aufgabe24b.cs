@@ -4,16 +4,23 @@ namespace AdventOfCode.Year2017;
 
 internal class Aufgabe24b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly DictionaryList<int, int> _parts;
     private int _maxLength;
     private int _maxStrength;
 
     public Aufgabe24b()
     {
-        var input = Utilities.ReadInput(2017, 24);
-        _parts = new(input.Length * 2);
+        _input = Utilities.ReadInput(2017, 24);
+        _parts = new(_input.Length * 2);
 
-        foreach (var line in input)
+        _maxLength = 0;
+        _maxStrength = 0;
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var numbers = line.GetNumbers();
 
@@ -24,12 +31,6 @@ internal class Aufgabe24b : IAufgabe
             }
         }
 
-        _maxLength = 0;
-        _maxStrength = 0;
-    }
-
-    public string Calc()
-    {
         Calc(0, 0, 0, []);
 
         return _maxStrength.ToString();

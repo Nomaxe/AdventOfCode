@@ -9,7 +9,7 @@ internal class Aufgabe14 : IAufgabe
 
     public Aufgabe14()
     {
-        _input = Utilities.ReadInput(2017, 14)[0];
+        _input = Utilities.ReadInputAsString(2017, 14);
     }
 
     public string Calc()

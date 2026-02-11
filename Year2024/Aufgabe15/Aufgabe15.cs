@@ -4,21 +4,28 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe15 : IAufgabe
 {
-    private readonly char[,] _map;
-    private readonly string _moves;
+    private readonly string[] _input;
+    private char[,] _map;
+    private string _moves;
 
     private Point _currentPosition;
 
+#pragma warning disable CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Fügen Sie ggf. den „erforderlichen“ Modifizierer hinzu, oder deklarieren Sie den Modifizierer als NULL-Werte zulassend.
     public Aufgabe15()
     {
-        var input = Utilities.ReadInput(2024, 15);
-        var whiteline = Array.IndexOf(input, string.Empty);
-        _map = new char[whiteline, input[0].Length];
+        _input = Utilities.ReadInput(2024, 15);
+    }
+#pragma warning restore CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Fügen Sie ggf. den „erforderlichen“ Modifizierer hinzu, oder deklarieren Sie den Modifizierer als NULL-Werte zulassend.
+
+    public string Calc()
+    {
+        var whiteline = Array.IndexOf(_input, string.Empty);
+        _map = new char[whiteline, _input[0].Length];
         for (int y = 0; y < _map.GetLength(0); y++)
         {
             for (int x = 0; x < _map.GetLength(1); x++)
             {
-                _map[y, x] = input[y][x];
+                _map[y, x] = _input[y][x];
 
                 if (_map[y, x] == '@')
                 {
@@ -28,14 +35,11 @@ internal class Aufgabe15 : IAufgabe
         }
 
         _moves = string.Empty;
-        foreach (var line in input.Skip(whiteline + 1))
+        foreach (var line in _input.Skip(whiteline + 1))
         {
             _moves += line;
         }
-    }
 
-    public string Calc()
-    {
         foreach (var move in _moves)
         {
             var direction = GetDirection(move);

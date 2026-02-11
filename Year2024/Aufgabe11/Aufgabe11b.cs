@@ -4,21 +4,23 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe11b : IAufgabe
 {
-    private LargeCounter<ulong> _counter = [];
+    private readonly List<ulong> _input;
+    private LargeCounter<ulong> _counter;
 
     public Aufgabe11b()
     {
-        var input = Utilities.ReadInput(2024, 11);
-        var split = input[0].Split(' ');
-        foreach (var number in split)
-        {
-            _counter.Add(ulong.Parse(number));
-        }
+        _input = Utilities.ReadInputAsList<ulong>(2024, 11, ' ');
+        _counter = new(_input.Count);
     }
 
     public string Calc()
     {
         const int amount = 75;
+
+        foreach (var number in _input)
+        {
+            _counter.Add(number);
+        }
 
         for (int i = 1; i <= amount; i++)
         {

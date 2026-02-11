@@ -4,19 +4,15 @@ namespace AdventOfCode.Year2017;
 
 internal class Aufgabe21 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Dictionary<string, string> _patterns;
     private Grid _grid;
 
     public Aufgabe21()
     {
-        var input = Utilities.ReadInput(2017, 21);
-        _patterns = new(input.Length);
-        foreach (var line in input)
-        {
-            var split = line.Split(" => ");
-            _patterns.Add(split[0], split[1]);
-        }
-
+        _input = Utilities.ReadInput(2017, 21);
+        _patterns = new(_input.Length);
+        
         _grid = new(3);
         _grid.SetValue(0, 0, '.');
         _grid.SetValue(1, 0, '#');
@@ -31,6 +27,12 @@ internal class Aufgabe21 : IAufgabe
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            var split = line.Split(" => ");
+            _patterns.Add(split[0], split[1]);
+        }
+
         for (int i = 0; i < 5; i++)
         {
             var squareSize = _grid.SizeX % 2 == 0 ? 2 : 3;

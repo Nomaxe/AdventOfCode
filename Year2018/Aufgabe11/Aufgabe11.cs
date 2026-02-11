@@ -9,7 +9,7 @@ internal class Aufgabe11 : IAufgabe
 
     public Aufgabe11()
     {
-        _serialnumber = int.Parse(Utilities.ReadInput(2018, 11)[0]);
+        _serialnumber = Utilities.ReadInputAsT<int>(2018, 11);
         _grid = new(300);
     }
 

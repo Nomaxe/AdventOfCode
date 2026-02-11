@@ -4,6 +4,7 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe19b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Dictionary<char, List<string>> _towels = [];
     private readonly List<string> _designs = [];
     private readonly HashSet<string> _notPossible = [];
@@ -11,10 +12,15 @@ internal class Aufgabe19b : IAufgabe
 
     public Aufgabe19b()
     {
-        var whiteline = false;
-        var input = Utilities.ReadInput(2024, 19);
+        
+        _input = Utilities.ReadInput(2024, 19);
+    }
 
-        foreach (var line in input)
+    public string Calc()
+    {
+        var whiteline = false;
+
+        foreach (var line in _input)
         {
             if (string.IsNullOrWhiteSpace(line))
             {
@@ -41,10 +47,7 @@ internal class Aufgabe19b : IAufgabe
                 _designs.Add(line);
             }
         }
-    }
 
-    public string Calc()
-    {
         ulong result = 0;
 
         foreach (var design in _designs)
@@ -57,9 +60,7 @@ internal class Aufgabe19b : IAufgabe
 
     private ulong CheckDesign(string design)
     {
-        ulong result = 0;
-
-        if (_possible.TryGetValue(design, out result))
+        if (_possible.TryGetValue(design, out var result))
         {
             return result;
         }

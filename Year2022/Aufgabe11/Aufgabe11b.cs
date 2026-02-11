@@ -4,27 +4,29 @@ namespace AdventOfCode.Year2022;
 
 internal class Aufgabe11b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<Monkey> _monkeys;
     private readonly DictionaryList<int, long> _monkeyItems;
     private readonly LargeCounter<int> _counter;
-    private readonly long _modolo = 1;
+    private long _modolo = 1;
 
     public Aufgabe11b()
     {
-        var input = Utilities.ReadInput(2022, 11);
-        _monkeys = new((input.Length + 1) / 7);
+        _input = Utilities.ReadInput(2022, 11);
+        _monkeys = new((_input.Length + 1) / 7);
         _monkeyItems = new(_monkeys.Count);
-        for (int i = 0; i < input.Length; i += 7)
-        {
-            _monkeys.Add(new(input[(i + 2)..(i + 6)]));
-            _monkeyItems.Add(i / 7, input[i + 1].GetUnsignedLongNumbers());
-            _modolo *= _monkeys[i / 7].TestValue;
-        }
         _counter = new(_monkeys.Count);
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _input.Length; i += 7)
+        {
+            _monkeys.Add(new(_input[(i + 2)..(i + 6)]));
+            _monkeyItems.Add(i / 7, _input[i + 1].GetUnsignedLongNumbers());
+            _modolo *= _monkeys[i / 7].TestValue;
+        }
+
         for (int i = 0; i < 10000; i++)
         {
             for (int j = 0; j < _monkeys.Count; j++)

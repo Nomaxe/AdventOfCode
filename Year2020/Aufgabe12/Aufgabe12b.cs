@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Utils;
-using static AdventOfCode.Utils.Enums;
 
 namespace AdventOfCode.Year2020;
 

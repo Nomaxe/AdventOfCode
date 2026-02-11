@@ -4,20 +4,22 @@ namespace AdventOfCode.Year2018;
 
 internal class Aufgabe23 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Nanobot[] _nanobots;
 
     public Aufgabe23()
     {
-        var input = Utilities.ReadInput(2018, 23);
-        _nanobots = new Nanobot[input.Length];
-        for (int i = 0; i < input.Length; i++)
-        {
-            _nanobots[i] = new(input[i]);
-        }
+        _input = Utilities.ReadInput(2018, 23);
+        _nanobots = new Nanobot[_input.Length];
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _input.Length; i++)
+        {
+            _nanobots[i] = new(_input[i]);
+        }
+
         var checkNanobot = _nanobots.MaxBy(x => x.Radius);
         int count = 0;
 

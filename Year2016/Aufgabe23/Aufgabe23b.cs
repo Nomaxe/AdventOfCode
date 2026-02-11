@@ -17,7 +17,5 @@ internal class Aufgabe23b : IAufgabe
         _code.SetRegister('a', 12);
         _code.Calc();
         return _code.GetRegister('a').ToString();
-
-        //>5621
     }
 }

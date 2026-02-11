@@ -20,8 +20,6 @@ internal class Aufgabe22 : IAufgabe
     {
         DoPlayerTurn(_bossStartHealth, 50, 500, 0, null, null, null);
 
-        //<1196
-
         return _minMana.ToString();
     }
 

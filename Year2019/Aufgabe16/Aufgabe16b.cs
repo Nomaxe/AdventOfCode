@@ -8,7 +8,7 @@ internal class Aufgabe16b : IAufgabe
 
     public Aufgabe16b()
     {
-        var input = Utilities.ReadInput(2019, 16)[0].Select(x => x.ToNumber()).ToArray();
+        var input = Utilities.ReadInputAsString(2019, 16).Select(x => x.ToNumber()).ToArray();
         int skip = 0;
         for (int i = 0; i < 7; i++)
         {

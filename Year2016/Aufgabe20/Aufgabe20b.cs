@@ -4,20 +4,22 @@ namespace AdventOfCode.Year2016;
 
 internal class Aufgabe20b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Blocklist[] _blocklist;
 
     public Aufgabe20b()
     {
-        var input = Utilities.ReadInput(2016, 20);
-        _blocklist = new Blocklist[input.Length];
-        for (int i = 0; i < input.Length; i++)
-        {
-            _blocklist[i] = new(input[i]);
-        }
+        _input = Utilities.ReadInput(2016, 20);
+        _blocklist = new Blocklist[_input.Length];
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _input.Length; i++)
+        {
+            _blocklist[i] = new(_input[i]);
+        }
+
         Array.Sort(_blocklist);
         ulong currentSmallest = 0;
         ulong count = 0;

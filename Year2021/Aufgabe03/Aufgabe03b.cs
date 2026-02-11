@@ -5,25 +5,27 @@ namespace AdventOfCode.Year2021;
 
 internal class Aufgabe03b : IAufgabe
 {
-    private readonly List<bool[]> _input;
+    private readonly string[] _input;
+    private readonly List<bool[]> _list;
 
     public Aufgabe03b()
     {
-        var input = Utilities.ReadInput(2021, 3);
-        _input = new(input.Length);
-        for (int i = 0; i < input.Length; i++)
-        {
-            _input.Add(new bool[input[i].Length]);
-            for (int j = 0; j < input[i].Length; j++)
-            {
-                _input[i][j] = input[i][j] == '1';
-            }
-        }
+        _input = Utilities.ReadInput(2021, 3);
+        _list = new(_input.Length);
     }
 
     public string Calc()
     {
-        return (GetValue(_input, 0, true).GetDecimalNumber() * GetValue(_input, 0, false).GetDecimalNumber()).ToString();
+        for (int i = 0; i < _input.Length; i++)
+        {
+            _list.Add(new bool[_input[i].Length]);
+            for (int j = 0; j < _input[i].Length; j++)
+            {
+                _list[i][j] = _input[i][j] == '1';
+            }
+        }
+
+        return (GetValue(_list, 0, true).GetDecimalNumber() * GetValue(_list, 0, false).GetDecimalNumber()).ToString();
     }
 
     public static bool[] GetValue(List<bool[]> input, int index, bool use)

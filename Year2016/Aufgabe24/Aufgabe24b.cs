@@ -14,6 +14,10 @@ internal class Aufgabe24b : IAufgabe
         _grid = Grid.CreateCharGrid(2016, 24);
         _lengths = new();
         _points = new();
+    }
+
+    public string Calc()
+    {
         for (int i = 0; i < int.MaxValue; i++)
         {
             var point = _grid.GetPointOfValueOrNull((char)(i + '0'));
@@ -24,10 +28,7 @@ internal class Aufgabe24b : IAufgabe
 
             _points.Add(i, point.Value);
         }
-    }
 
-    public string Calc()
-    {
         for (int i = 0; i < _points.Count; i++)
         {
             CompleteSolver solver = new(_grid);

@@ -4,23 +4,24 @@ namespace AdventOfCode.Year2022;
 
 internal class Aufgabe15b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<(Point Sensor, int Distance)> _beacons;
     private const long CheckGrid = 4_000_000;
 
     public Aufgabe15b()
     {
-        var input = Utilities.ReadInput(2022, 15);
-        _beacons = new(input.Length);
-
-        foreach (var line in input)
-        {
-            var split = line.GetNumbers();
-            _beacons.Add((new(split[0], split[1]), new Point(split[0], split[1]).GetManhattenDistance(new(split[2], split[3]))));
-        }
+        _input = Utilities.ReadInput(2022, 15);
+        _beacons = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            var split = line.GetNumbers();
+            _beacons.Add((new(split[0], split[1]), new Point(split[0], split[1]).GetManhattenDistance(new(split[2], split[3]))));
+        }
+
         var point = CalcPoint();
 
         return (point.X * CheckGrid + point.Y).ToString();

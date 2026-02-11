@@ -5,7 +5,8 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe07b : IAufgabe
 {
-    private readonly List<Equation> _equations = [];
+    private readonly string[] _input;
+    private readonly List<Equation> _equations;
     private readonly long[] _result;
     private readonly ArrayPool<char> _pool;
     private readonly ArrayPool<long> _longPool;
@@ -14,8 +15,16 @@ internal class Aufgabe07b : IAufgabe
 
     public Aufgabe07b()
     {
-        var input = Utilities.ReadInput(2024, 7);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2024, 7);
+        _equations = new(_input.Length);
+        _pool = ArrayPool<char>.Shared;
+        _longPool = ArrayPool<long>.Shared;
+        _result = _longPool.Rent(ThreadCount);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var split = line.Split(' ');
             var result = long.Parse(split[0][..^1]);
@@ -28,13 +37,6 @@ internal class Aufgabe07b : IAufgabe
             _equations.Add(new(result, numbers));
         }
 
-        _pool = ArrayPool<char>.Shared;
-        _longPool = ArrayPool<long>.Shared;
-        _result = _longPool.Rent(ThreadCount);
-    }
-
-    public string Calc()
-    {
         Task[] tasks = new Task[ThreadCount];
         var calcAmount = _equations.Count / ThreadCount;
         for (int i = 0; i < tasks.Length; i++)

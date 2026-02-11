@@ -4,6 +4,7 @@ namespace AdventOfCode.Year2017;
 
 internal class Aufgabe23 : IAufgabe
 {
+    private readonly string[] _input;
     private long _registerA = 0;
     private long _registerB = 0;
     private long _registerC = 0;
@@ -12,22 +13,24 @@ internal class Aufgabe23 : IAufgabe
     private long _registerF = 0;
     private long _registerG = 0;
     private long _registerH = 0;
-    private readonly List<Instruction> _instructions = [];
+    private readonly List<Instruction> _instructions;
     private int _pointer = 0;
     private int _result = 0;
 
     public Aufgabe23()
     {
-        var input = Utilities.ReadInput(2017, 23);
-        foreach (var line in input)
-        {
-            var split = line.Split(' ');
-            _instructions.Add(new(split[0], split[1][0], split[2]));
-        }
+        _input = Utilities.ReadInput(2017, 23);
+        _instructions = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            var split = line.Split(' ');
+            _instructions.Add(new(split[0], split[1][0], split[2]));
+        }
+
         while (_pointer < _instructions.Count)
         {
             switch (_instructions[_pointer].Mode)

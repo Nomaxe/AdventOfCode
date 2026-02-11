@@ -4,20 +4,22 @@ namespace AdventOfCode.Year2018;
 
 internal class Aufgabe10b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<Light> _lights;
 
     public Aufgabe10b()
     {
-        var input = Utilities.ReadInput(2018, 10);
-        _lights = new(input.Length);
-        foreach (var line in input)
-        {
-            _lights.Add(new(line));
-        }
+        _input = Utilities.ReadInput(2018, 10);
+        _lights = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            _lights.Add(new(line));
+        }
+
         foreach (var light in _lights)
         {
             light.Move(10400);

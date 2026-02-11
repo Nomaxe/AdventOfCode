@@ -18,8 +18,7 @@ internal class Aufgabe03b : IAufgabe
 
     public Aufgabe03b()
     {
-        var input = Utilities.ReadInput(2017, 3);
-        _number = uint.Parse(input[0]);
+        _number = Utilities.ReadInputAsT<uint>(2017, 3);
 
         _numbers = new uint[GridSize * 2 + 1, GridSize * 2 + 1];
     }

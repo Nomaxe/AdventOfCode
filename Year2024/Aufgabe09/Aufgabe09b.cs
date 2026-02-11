@@ -14,7 +14,10 @@ internal class Aufgabe09b : IAufgabe
         var input = Utilities.ReadInput(2024, 9);
         _input = input[0].ToCharArray();
         _disk = new(_input.Length);
+    }
 
+    public string Calc()
+    {
         int fileId = 0;
         AddToDisk(0, GetNumericValue(_input[0]));
         fileId++;
@@ -26,10 +29,7 @@ internal class Aufgabe09b : IAufgabe
         }
 
         _currentFileId = fileId - 1;
-    }
 
-    public string Calc()
-    {
         int indexOfFileId, count, indexOfSpace;
 
         while (_currentFileId > 0)

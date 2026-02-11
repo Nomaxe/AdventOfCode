@@ -34,8 +34,6 @@ internal class Aufgabe11b : IAufgabe
             Move((int)_intCode.Out[^1]);
         }
 
-        //_grid.Draw();
-
         return "ZRZPKEZR";
     }
 

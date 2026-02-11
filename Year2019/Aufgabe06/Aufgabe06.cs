@@ -4,20 +4,23 @@ namespace AdventOfCode.Year2019;
 
 internal class Aufgabe06 : IAufgabe
 {
-    private readonly DictionaryHashSet<string, string> _items = new();
+    private readonly string[] _input;
+    private readonly DictionaryHashSet<string, string> _items;
 
     public Aufgabe06()
     {
-        var input = Utilities.ReadInput(2019, 6);
-        foreach (var line in input)
-        {
-            var split = line.Split(')');
-            _items.Add(split[0], split[1]);
-        }
+        _input = Utilities.ReadInput(2019, 6);
+        _items = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            var split = line.Split(')');
+            _items.Add(split[0], split[1]);
+        }
+
         List<string> checkItems = ["COM"];
         int length = 0;
         int result = 0;

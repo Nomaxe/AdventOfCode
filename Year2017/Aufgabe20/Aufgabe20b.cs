@@ -4,20 +4,22 @@ namespace AdventOfCode.Year2017;
 
 internal class Aufgabe20b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<Particle> _particles;
 
     public Aufgabe20b()
     {
-        var input = Utilities.ReadInput(2017, 20);
-        _particles = new(input.Length);
-        for (int i = 0; i < input.Length; i++)
-        {
-            _particles.Add(new(i, input[i]));
-        }
+        _input = Utilities.ReadInput(2017, 20);
+        _particles = new(_input.Length);
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _input.Length; i++)
+        {
+            _particles.Add(new(i, _input[i]));
+        }
+
         for (int i = 0; i < 1000; i++)
         {
             DictionaryCounter<Point3D> points = new(_particles.Count);

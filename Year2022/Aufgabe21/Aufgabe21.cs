@@ -4,13 +4,18 @@ namespace AdventOfCode.Year2022;
 
 internal class Aufgabe21 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Dictionary<string, long> _calced = [];
     private List<Job> _jobs = [];
 
     public Aufgabe21()
     {
-        var input = Utilities.ReadInput(2022, 21);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2022, 21);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var monkey = line[..4];
 
@@ -23,10 +28,7 @@ internal class Aufgabe21 : IAufgabe
                 _calced.Add(monkey, long.Parse(line[6..]));
             }
         }
-    }
 
-    public string Calc()
-    {
         do
         {
             List<Job> nextJobs = [];

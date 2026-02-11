@@ -5,6 +5,7 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe18 : IAufgabe
 {
+    private readonly string[] _input;
     private const int MapSize = 71;
     private readonly char[,] _map;
     private readonly HashSet<Point> _length = [];
@@ -13,9 +14,12 @@ internal class Aufgabe18 : IAufgabe
 
     public Aufgabe18()
     {
-        var input = Utilities.ReadInput(2024, 18);
+        _input = Utilities.ReadInput(2024, 18);
         _map = new char[MapSize, MapSize];
+    }
 
+    public string Calc()
+    {
         for (int x = 0; x < MapSize; x++)
         {
             for (int y = 0; y < MapSize; y++)
@@ -24,17 +28,14 @@ internal class Aufgabe18 : IAufgabe
             }
         }
 
-        foreach (var line in input.Take(1024))
+        foreach (var line in _input.Take(1024))
         {
             var split = line.Split(',');
             _map[int.Parse(split[1]), int.Parse(split[0])] = '#';
         }
 
         AddPoint(0, 0, 0);
-    }
 
-    public string Calc()
-    {
         int length = 1;
 
         while (_nextPoints.Count > 0)

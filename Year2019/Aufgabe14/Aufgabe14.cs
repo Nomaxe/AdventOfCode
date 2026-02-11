@@ -4,12 +4,18 @@ namespace AdventOfCode.Year2019;
 
 internal class Aufgabe14 : IAufgabe
 {
-    private readonly Dictionary<string, (int Count, List<Chemical> Items)> _chemicals = [];
+    private readonly string[] _input;
+    private readonly Dictionary<string, (int Count, List<Chemical> Items)> _chemicals;
 
     public Aufgabe14()
     {
-        var input = Utilities.ReadInput(2019, 14);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2019, 14);
+        _chemicals = new(_input.Length);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var split = line.Split(' ');
             List<Chemical> inputChemicals = [];
@@ -24,10 +30,7 @@ internal class Aufgabe14 : IAufgabe
 
             _chemicals.Add(split[^1], (int.Parse(split[^2]), inputChemicals));
         }
-    }
 
-    public string Calc()
-    {
         LargeCounter<string> neededChemicals = [];
         LargeCounter<string> currentChemicals = [];
         neededChemicals.Add("FUEL", 1);

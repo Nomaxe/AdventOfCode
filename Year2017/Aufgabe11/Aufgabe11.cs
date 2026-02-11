@@ -8,7 +8,7 @@ internal class Aufgabe11 : IAufgabe
 
     public Aufgabe11()
     {
-        _input = Utilities.ReadInput(2017, 11)[0];
+        _input = Utilities.ReadInputAsString(2017, 11);
     }
 
     public string Calc()

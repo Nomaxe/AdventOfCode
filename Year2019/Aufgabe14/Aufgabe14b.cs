@@ -4,12 +4,20 @@ namespace AdventOfCode.Year2019;
 
 internal class Aufgabe14b : IAufgabe
 {
-    private readonly Dictionary<string, (ulong Count, List<Chemical> Items)> _chemicals = [];
+    private readonly string[] _input;
+    private readonly Dictionary<string, (ulong Count, List<Chemical> Items)> _chemicals;
 
     public Aufgabe14b()
     {
-        var input = Utilities.ReadInput(2019, 14);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2019, 14);
+        _chemicals = new(_input.Length);
+    }
+
+    public string Calc()
+    {
+        const ulong OreAmount = 1000000000000;
+
+        foreach (var line in _input)
         {
             var split = line.Split(' ');
             List<Chemical> inputChemicals = [];
@@ -24,11 +32,6 @@ internal class Aufgabe14b : IAufgabe
 
             _chemicals.Add(split[^1], (ulong.Parse(split[^2]), inputChemicals));
         }
-    }
-
-    public string Calc()
-    {
-        const ulong OreAmount = 1000000000000;
 
         ulong min = 1;
         ulong max = OreAmount;

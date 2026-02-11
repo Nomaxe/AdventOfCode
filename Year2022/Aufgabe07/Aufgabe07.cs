@@ -4,14 +4,19 @@ namespace AdventOfCode.Year2022;
 
 internal class Aufgabe07 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly HashSet<string> _directories = [];
     private readonly Dictionary<string, int> _files = [];
     private readonly List<string> _currentDirectory = [];
 
     public Aufgabe07()
     {
-        var input = Utilities.ReadInput(2022, 7);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2022, 7);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             switch (line[0])
             {
@@ -38,10 +43,7 @@ internal class Aufgabe07 : IAufgabe
                     break;
             }
         }
-    }
 
-    public string Calc()
-    {
         int result = 0;
 
         foreach (var directory in _directories)

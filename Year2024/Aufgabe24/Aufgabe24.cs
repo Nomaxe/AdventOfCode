@@ -4,15 +4,20 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe24 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Dictionary<string, bool> _wires = [];
     private List<Gate> _gates = [];
 
     public Aufgabe24()
     {
-        var input = Utilities.ReadInput(2024, 24);
+        _input = Utilities.ReadInput(2024, 24);
+    }
+
+    public string Calc()
+    {
         bool whiteline = false;
 
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             if (string.IsNullOrWhiteSpace(line))
             {
@@ -31,10 +36,7 @@ internal class Aufgabe24 : IAufgabe
                 _gates.Add(new(split[0], split[2], Enum.Parse<Connection>(split[1]), split[^1]));
             }
         }
-    }
 
-    public string Calc()
-    {
         while (_gates.Count > 0)
         {
             List<Gate> nextGates = [];

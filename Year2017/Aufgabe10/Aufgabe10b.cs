@@ -9,7 +9,7 @@ internal class Aufgabe10b : IAufgabe
 
     public Aufgabe10b()
     {
-        _input = Utilities.ReadInput(2017, 10)[0];
+        _input = Utilities.ReadInputAsString(2017, 10);
     }
 
     public string Calc()

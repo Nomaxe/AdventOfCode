@@ -5,31 +5,32 @@ namespace AdventOfCode.Year2018;
 
 internal partial class Aufgabe24b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<Unit> _orginal;
     private List<Unit>? _units;
 
     public Aufgabe24b()
     {
-        var input = Utilities.ReadInput(2018, 24);
-        _orginal = new(input.Length - 3);
+        _input = Utilities.ReadInput(2018, 24);
+        _orginal = new(_input.Length - 3);
+    }
 
+    public string Calc()
+    {
         var army = Army.ImmuneSystem;
 
-        for (int i = 1; i < input.Length; i++)
+        for (int i = 1; i < _input.Length; i++)
         {
-            if (string.IsNullOrEmpty(input[i]))
+            if (string.IsNullOrEmpty(_input[i]))
             {
                 i++;
                 army = Army.Infection;
                 continue;
             }
 
-            _orginal.Add(new(army, input[i]));
+            _orginal.Add(new(army, _input[i]));
         }
-    }
 
-    public string Calc()
-    {
         for (int i = 0; i < 20_000; i++)
         {
             if (Calc(i))

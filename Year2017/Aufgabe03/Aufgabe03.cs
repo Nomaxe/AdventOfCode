@@ -8,8 +8,7 @@ internal class Aufgabe03 : IAufgabe
 
     public Aufgabe03()
     {
-        var input = Utilities.ReadInput(2017, 3);
-        _number = uint.Parse(input[0]);
+        _number = Utilities.ReadInputAsT<uint>(2017, 3);
     }
 
     public string Calc()

@@ -4,25 +4,27 @@ namespace AdventOfCode.Year2016;
 
 internal class Aufgabe22 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Grid<Node> _grid;
 
     public Aufgabe22()
     {
-        var input = Utilities.ReadInput(2016, 22);
-        var sizeX = input[^1].GetNumber(16) + 1;
-        _grid = new(sizeX, (input.Length - 2) / sizeX);
+        _input = Utilities.ReadInput(2016, 22);
 
-        foreach (var line in input.Skip(2))
+        var sizeX = _input[^1].GetNumber(16) + 1;
+        _grid = new(sizeX, (_input.Length - 2) / sizeX);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input.Skip(2))
         {
             var x = line.GetNumber(16);
             var y = line.GetNumber(x >= 10 ? 20 : 19);
 
             _grid.SetValue(x, y, new(line));
         }
-    }
 
-    public string Calc()
-    {
         int count = 0;
 
         for (int y = 0; y < _grid.SizeY; y++)

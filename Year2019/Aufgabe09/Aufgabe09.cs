@@ -5,11 +5,17 @@ namespace AdventOfCode.Year2019;
 
 internal class Aufgabe09 : IAufgabe
 {
+    private readonly IntCode _intCode;
+
+    public Aufgabe09()
+    {
+        _intCode = new IntCode(2019, 9);
+    }
+
     public string Calc()
     {
-        var intcode = new IntCode(2019, 9);
-        intcode.AddInput(1);
-        intcode.Calc();
-        return string.Join(',', intcode.Out);
+        _intCode.AddInput(1);
+        _intCode.Calc();
+        return string.Join(',', _intCode.Out);
     }
 }

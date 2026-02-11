@@ -4,13 +4,20 @@ namespace AdventOfCode.Year2015;
 
 internal class Aufgabe09 : IAufgabe
 {
-    public readonly Dictionary<(string From, string To), int> _distance = [];
-    private readonly HashSet<string> _towns = [];
+    private readonly string[] _input;
+    private readonly Dictionary<(string From, string To), int> _distance;
+    private readonly HashSet<string> _towns;
 
     public Aufgabe09()
     {
-        var input = Utilities.ReadInput(2015, 9);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2015, 9);
+        _distance = new(_input.Length);
+        _towns = new(_input.Length);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var split = line.Split(' ');
             var distance = int.Parse(split[^1]);
@@ -19,10 +26,7 @@ internal class Aufgabe09 : IAufgabe
             _towns.Add(split[0]);
             _towns.Add(split[2]);
         }
-    }
 
-    public string Calc()
-    {
         int result = int.MaxValue;
 
         foreach (var town in _towns)

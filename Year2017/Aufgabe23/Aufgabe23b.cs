@@ -8,7 +8,7 @@ internal class Aufgabe23b : IAufgabe
 
     public Aufgabe23b()
     {
-        _input = Utilities.ReadInput(2017, 23)[0].GetNumbers()[0] * 100 + 100000;
+        _input = Utilities.ReadInputAsString(2017, 23).GetNumbers()[0] * 100 + 100000;
     }
 
     public string Calc()

@@ -4,28 +4,31 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe07 : IAufgabe
 {
-    private readonly List<Equation> _equations = [];
+    private readonly string[] _input;
+    private readonly List<Equation> _equations;
     private readonly List<ulong> _results = [];
 
     public Aufgabe07()
     {
-        var input = Utilities.ReadInput(2024, 7);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2024, 7);
+        _equations = new(_input.Length);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var split = line.Split(' ');
-            var result = ulong.Parse(split[0][..^1]);
+            var equationResult = ulong.Parse(split[0][..^1]);
             List<ulong> numbers = [];
             for (int i = 1; i < split.Length; i++)
             {
                 numbers.Add(ulong.Parse(split[i]));
             }
 
-            _equations.Add(new() { Result = result, Numbers = numbers });
+            _equations.Add(new() { Result = equationResult, Numbers = numbers });
         }
-    }
 
-    public string Calc()
-    {
         ulong result = 0;
 
         foreach (var equation in _equations)

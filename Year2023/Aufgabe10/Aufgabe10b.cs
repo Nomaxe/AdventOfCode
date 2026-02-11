@@ -8,7 +8,7 @@ internal class Aufgabe10b : IAufgabe
 {
     private readonly Grid _grid;
     private Direction _direction;
-    private Dictionary<int, SortedList<int, bool>> _loop;
+    private readonly Dictionary<int, SortedList<int, bool>> _loop;
 
     public Aufgabe10b()
     {

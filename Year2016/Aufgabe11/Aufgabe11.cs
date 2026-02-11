@@ -5,21 +5,22 @@ namespace AdventOfCode.Year2016;
 
 internal partial class Aufgabe11 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly int[] _floorCount;
 
     public Aufgabe11()
     {
-        var input = Utilities.ReadInput(2016, 11);
-        _floorCount = new int[input.Length];
-
-        for (int i = 0; i < _floorCount.Length; i++)
-        {
-            _floorCount[i] = ObjectCount().Count(input[i]);
-        }
+        _input = Utilities.ReadInput(2016, 11);
+        _floorCount = new int[_input.Length];
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _floorCount.Length; i++)
+        {
+            _floorCount[i] = ObjectCount().Count(_input[i]);
+        }
+
         int count = 0;
 
         for (int i = 0; i < _floorCount.Length - 1; i++)

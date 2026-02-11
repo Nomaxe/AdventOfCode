@@ -8,7 +8,7 @@ internal class Aufgabe20 : IAufgabe
 
     public Aufgabe20()
     {
-        _input = int.Parse(Utilities.ReadInput(2015, 20)[0]);
+        _input = Utilities.ReadInputAsT<int>(2015, 20);
     }
 
     public string Calc()

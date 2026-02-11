@@ -4,13 +4,19 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe01 : IAufgabe
 {
+    private readonly string[] _input;
+
+    public Aufgabe01()
+    {
+        _input = Utilities.ReadInput(2024, 1);
+    }
+
     public string Calc()
     {
-        var input = Utilities.ReadInput(2024, 1);
-        List<int> number1 = new(input.Length);
-        List<int> number2 = new(input.Length);
+        List<int> number1 = new(_input.Length);
+        List<int> number2 = new(_input.Length);
         int result = 0;
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             var numbers = line.Split(' ');
             number1.Add(int.Parse(numbers[0]));
@@ -20,7 +26,7 @@ internal class Aufgabe01 : IAufgabe
         number1 = [.. number1.Order()];
         number2 = [.. number2.Order()];
 
-        for (int i = 0; i < input.Length; i++)
+        for (int i = 0; i < _input.Length; i++)
         {
             result += Math.Abs(number1[i] - number2[i]);
         }

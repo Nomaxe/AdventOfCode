@@ -4,29 +4,25 @@ namespace AdventOfCode.Year2018;
 
 internal class Aufgabe25 : IAufgabe
 {
-    private readonly List<Point4D> _points;
+    private readonly string[] _input;
     private readonly List<List<Point4D>> _constellations;
 
     public Aufgabe25()
     {
-        _points = Utilities.ReadInput(2018, 25)
-                           .Select(x => new Point4D(x))
-                           .ToList();
+        _input = Utilities.ReadInput(2018, 25);
         _constellations = new();
     }
 
     public string Calc()
     {
-        foreach (var point in _points)
+        foreach (var line in _input)
         {
-            AddPoint(point);
+            AddPoint(new(line));
         }
 
         Collect();
 
         return _constellations.Count.ToString();
-
-        //<504
     }
 
     private void AddPoint(Point4D point)

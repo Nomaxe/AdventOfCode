@@ -4,23 +4,25 @@ namespace AdventOfCode.Year2019;
 
 internal class Aufgabe12b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Moon[] _moons;
     private readonly Moon[] _startPositions;
 
     public Aufgabe12b()
     {
-        var input = Utilities.ReadInput(2019, 12);
-        _moons = new Moon[input.Length];
-        for (int i = 0; i < input.Length; i++)
-        {
-            _moons[i] = new(input[i]);
-        }
-
-        _startPositions = _moons.ToArray();
+        _input = Utilities.ReadInput(2019, 12);
+        _moons = new Moon[_input.Length];
+        _startPositions = new Moon[_input.Length];
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _input.Length; i++)
+        {
+            _moons[i] = new(_input[i]);
+        }
+        Array.Copy(_moons, _startPositions, _moons.Length);
+
         ulong step = 0;
         ulong? x = null;
         ulong? y = null;

@@ -8,7 +8,7 @@ namespace AdventOfCode.Year2019
 
         public Aufgabe04b()
         {
-            _input = Utilities.ReadInput(2019, 4)[0];
+            _input = Utilities.ReadInputAsString(2019, 4);
         }
 
         public string Calc()

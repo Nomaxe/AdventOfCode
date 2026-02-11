@@ -4,21 +4,24 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe23 : IAufgabe
 {
-    private readonly Dictionary<string, HashSet<string>> _connections = [];
+    private readonly string[] _input;
+    private readonly Dictionary<string, HashSet<string>> _connections;
 
     public Aufgabe23()
     {
-        var input = Utilities.ReadInput(2024, 23);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2024, 23);
+        _connections = new(_input.Length);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var split = line.Split('-');
             Add(split[0], split[1]);
             Add(split[1], split[0]);
         }
-    }
 
-    public string Calc()
-    {
         HashSet<(string a, string b, string c)> uniqueCombinations = [];
 
         foreach (var connection in _connections.Where(x => x.Key.StartsWith('t')))

@@ -4,21 +4,23 @@ namespace AdventOfCode.Year2017;
 
 internal class Aufgabe05 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<int> _code;
     private int _pointer = 0;
 
     public Aufgabe05()
     {
-        var input = Utilities.ReadInput(2017, 5);
-        _code = new(input.Length);
-        foreach (var line in input)
-        {
-            _code.Add(int.Parse(line));
-        }
+        _input = Utilities.ReadInput(2017, 5);
+        _code = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            _code.Add(int.Parse(line));
+        }
+
         int steps = 0;
 
         do

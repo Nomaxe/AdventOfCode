@@ -4,21 +4,22 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe22 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<ulong> _secrets;
 
     public Aufgabe22()
     {
-        var input = Utilities.ReadInput(2024, 22);
-        _secrets = new(input.Length);
-
-        foreach (var line in input)
-        {
-            _secrets.Add(ulong.Parse(line));
-        }
+        _input = Utilities.ReadInput(2024, 22);
+        _secrets = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            _secrets.Add(ulong.Parse(line));
+        }
+
         ulong result = 0;
 
         foreach (var secret in _secrets)

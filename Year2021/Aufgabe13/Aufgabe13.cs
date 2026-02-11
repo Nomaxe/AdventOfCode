@@ -4,16 +4,23 @@ namespace AdventOfCode.Year2021;
 
 internal class Aufgabe13 : IAufgabe
 {
+    private readonly string[] _input;
     private Grid _grid;
     private readonly List<(char Direction, int Number)> _folds = [];
 
+#pragma warning disable CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Fügen Sie ggf. den „erforderlichen“ Modifizierer hinzu, oder deklarieren Sie den Modifizierer als NULL-Werte zulassend.
     public Aufgabe13()
+    {
+        _input = Utilities.ReadInput(2021, 13);
+    }
+#pragma warning restore CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Fügen Sie ggf. den „erforderlichen“ Modifizierer hinzu, oder deklarieren Sie den Modifizierer als NULL-Werte zulassend.
+
+    public string Calc()
     {
         List<Point> points = [];
 
-        var input = Utilities.ReadInput(2021, 13);
         bool whiteline = false;
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             if (string.IsNullOrEmpty(line))
             {
@@ -36,10 +43,7 @@ internal class Aufgabe13 : IAufgabe
         {
             _grid.SetValue(point, '#');
         }
-    }
 
-    public string Calc()
-    {
         Grid nextGrid;
 
         if (_folds[0].Direction == 'x')

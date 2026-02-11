@@ -15,14 +15,15 @@ internal class Aufgabe20 : IAufgabe
     {
         _grid = Grid.CreateCharGrid(2019, 20);
         _solver = new(_grid, this);
-        for (int i = 'A'; i < 'Z'; i++)
-        {
-            _solver.AddWallCharacter((char)i);
-        }
     }
 
     public string Calc()
     {
+        for (int i = 'A'; i < 'Z'; i++)
+        {
+            _solver.AddWallCharacter((char)i);
+        }
+
         GetJumpPoints();
         _solver.SolveLabyrinth(_startPoint);
         return _solver.GetLength(_endPoint).ToString();

@@ -4,6 +4,7 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe17b : IAufgabe
 {
+    private readonly string[] _input;
     private ulong _registerA = 0;
     private ulong _registerB = 0;
     private ulong _registerC = 0;
@@ -13,15 +14,16 @@ internal class Aufgabe17b : IAufgabe
 
     public Aufgabe17b()
     {
-        var input = Utilities.ReadInput(2024, 17);
-        foreach (var instruction in input[^1][9..].Split(','))
-        {
-            _instructions.Add(int.Parse(instruction));
-        }
+        _input = Utilities.ReadInput(2024, 17);
     }
 
     public string Calc()
     {
+        foreach (var instruction in _input[^1][9..].Split(','))
+        {
+            _instructions.Add(int.Parse(instruction));
+        }
+
         List<ulong> test = [0, 1, 2, 3, 4, 5, 6, 7];
         List<ulong> nextTest = [];
         int checkAmount = 1;

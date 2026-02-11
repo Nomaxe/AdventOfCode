@@ -4,21 +4,24 @@ namespace AdventOfCode.Year2016;
 
 internal class Aufgabe16 : IAufgabe
 {
+    private readonly string _input;
     private List<bool> _disk;
 
     public Aufgabe16()
     {
-        var input = Utilities.ReadInput(2016, 16);
-        _disk = new(input[0].Length);
-        foreach (var character in input[0])
-        {
-            _disk.Add(character == '1');
-        }
+        _input = Utilities.ReadInputAsString(2016, 16);
+        _disk = new(_input.Length);
+        
     }
 
     public string Calc()
     {
         const int Length = 272;
+
+        foreach (var character in _input)
+        {
+            _disk.Add(character == '1');
+        }
 
         while (_disk.Count < Length)
         {

@@ -4,22 +4,23 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe22b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<ulong> _secrets;
     private readonly LargeCounter<(int a, int b, int c, int d)> _counter = [];
 
     public Aufgabe22b()
     {
-        var input = Utilities.ReadInput(2024, 22);
-        _secrets = new(input.Length);
-
-        foreach (var line in input)
-        {
-            _secrets.Add(ulong.Parse(line));
-        }
+        _input = Utilities.ReadInput(2024, 22);
+        _secrets = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            _secrets.Add(ulong.Parse(line));
+        }
+
         foreach (var secret in _secrets)
         {
             List<Bananas> list = [];

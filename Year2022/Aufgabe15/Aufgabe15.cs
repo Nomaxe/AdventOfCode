@@ -4,22 +4,23 @@ namespace AdventOfCode.Year2022;
 
 internal class Aufgabe15 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<(int X, int Y, int ClosestX, int ClosestY)> _beacons;
 
     public Aufgabe15()
     {
-        var input = Utilities.ReadInput(2022, 15);
-        _beacons = new(input.Length);
-
-        foreach (var line in input)
-        {
-            var split = line.GetNumbers();
-            _beacons.Add((split[0], split[1], split[2], split[3]));
-        }
+        _input = Utilities.ReadInput(2022, 15);
+        _beacons = new(_input.Length);
     }
 
     public string Calc()
     {
+        foreach (var line in _input)
+        {
+            var split = line.GetNumbers();
+            _beacons.Add((split[0], split[1], split[2], split[3]));
+        }
+
         const int CheckY = 2000000;
         HashSet<int> notPossiblePositions = [];
 

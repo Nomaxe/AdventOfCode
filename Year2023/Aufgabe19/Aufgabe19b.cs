@@ -4,21 +4,23 @@ namespace AdventOfCode.Year2023;
 
 internal class Aufgabe19b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Dictionary<string, Workflow[]> _workflows = [];
     private ulong _result = 0;
 
     public Aufgabe19b()
     {
-        var input = Utilities.ReadInput(2023, 19);
-        foreach (var line in input.TakeWhile(x => !string.IsNullOrWhiteSpace(x)))
-        {
-            var index = line.IndexOf('{');
-            _workflows.Add(line[..index], line[(index + 1)..^1].Split(',').Select(x => new Workflow(x)).ToArray());
-        }
+        _input = Utilities.ReadInput(2023, 19);
     }
 
     public string Calc()
     {
+        foreach (var line in _input.TakeWhile(x => !string.IsNullOrWhiteSpace(x)))
+        {
+            var index = line.IndexOf('{');
+            _workflows.Add(line[..index], line[(index + 1)..^1].Split(',').Select(x => new Workflow(x)).ToArray());
+        }
+
         Calc("in", 1, 4000, 1, 4000, 1, 4000, 1, 4000);
         return _result.ToString();
     }

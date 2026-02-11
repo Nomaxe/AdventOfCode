@@ -15,7 +15,7 @@ internal class Aufgabe09 : IAufgabe
 
     public Aufgabe09()
     {
-        var numbers = Utilities.ReadInput(2018, 9)[0].GetUnsignedNumbers();
+        var numbers = Utilities.ReadInputAsString(2018, 9).GetUnsignedNumbers();
         _playerCount = numbers[0];
         _marblesCount = numbers[1];
         _marbles = new(_marblesCount);

@@ -4,15 +4,19 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe25 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<int[]> _locks = [];
     private readonly List<int[]> _keys = [];
 
     public Aufgabe25()
     {
-        List<string> currentInput = [];
-        var input = Utilities.ReadInput(2024, 25);
+        _input = Utilities.ReadInput(2024, 25);
+    }
 
-        foreach (var line in input.Append(string.Empty))
+    public string Calc()
+    {
+        List<string> currentInput = [];
+        foreach (var line in _input.Append(string.Empty))
         {
             if (string.IsNullOrWhiteSpace(line))
             {
@@ -33,10 +37,7 @@ internal class Aufgabe25 : IAufgabe
                 currentInput.Add(line);
             }
         }
-    }
 
-    public string Calc()
-    {
         ulong result = 0;
 
         foreach (var @lock in _locks)

@@ -9,8 +9,7 @@ internal class Aufgabe16 : IAufgabe
 
     public Aufgabe16()
     {
-        var input = Utilities.ReadInput(2017, 16);
-        _dance.AddRange(input[0].Split(','));
+        _dance = Utilities.ReadInputAsList<string>(2017, 16, ',');
     }
 
     public string Calc()

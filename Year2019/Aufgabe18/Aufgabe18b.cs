@@ -11,21 +11,21 @@ internal class Aufgabe18b : IAufgabe
     private readonly DictionaryDictionary<PointList, MissingKeys, int> _cache;
 
     private const char highestKey = 'z';
-    private readonly MissingKeys _emptyMissingKeys = new([]);
 
     public Aufgabe18b()
     {
         _grid = Grid.CreateCharGrid(2019, 18);
         _keyPositions = new Point[highestKey - 'a' + 1];
-        for (int i = 'a'; i <= highestKey; i++)
-        {
-            _keyPositions[i - 'a'] = _grid.GetPointOfValue((char)i);
-        }
         _cache = new();
     }
 
     public string Calc()
     {
+        for (int i = 'a'; i <= highestKey; i++)
+        {
+            _keyPositions[i - 'a'] = _grid.GetPointOfValue((char)i);
+        }
+
         Point currentPoint = _grid.GetPointOfValue('@');
         _grid.SetValue(currentPoint, '#');
         _grid.SetValue(currentPoint.X - 1, currentPoint.Y, '#');

@@ -3,17 +3,23 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Year2024;
 
-internal class Aufgabe03 : IAufgabe
+internal partial class Aufgabe03 : IAufgabe
 {
+    private readonly string[] _input;
+
+    public Aufgabe03()
+    {
+        _input = Utilities.ReadInput(2024, 3);
+    }
+
     public string Calc()
     {
         long resultNumber = 0;
-        var input = Utilities.ReadInput(2024, 3);
-        var line = string.Concat(input);
-        Regex regex = new(@"mul\(\d{1,3},\d{1,3}\)");
+        var line = string.Concat(_input);
+        Regex regex = RegexMultiplicator();
         var results = regex.Matches(line);
 
-        Regex numberRegex = new(@"\d+");
+        Regex numberRegex = RegexNumber();
         foreach (Match result in results)
         {
             var numbers = numberRegex.Matches(result.Value);
@@ -22,4 +28,9 @@ internal class Aufgabe03 : IAufgabe
 
         return resultNumber.ToString();
     }
+
+    [GeneratedRegex(@"mul\(\d{1,3},\d{1,3}\)")]
+    private static partial Regex RegexMultiplicator();
+    [GeneratedRegex(@"\d+")]
+    private static partial Regex RegexNumber();
 }

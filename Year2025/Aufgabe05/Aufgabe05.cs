@@ -4,17 +4,22 @@ namespace AdventOfCode.Year2025;
 
 internal class Aufgabe05 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<Range> _range;
     private readonly List<ulong> _numbers;
 
     public Aufgabe05()
     {
-        var isRange = true;
-        var input = Utilities.ReadInput(2025, 5);
+        _input = Utilities.ReadInput(2025, 5);
         _range = [];
         _numbers = [];
 
-        foreach (var line in input)
+    }
+
+    public string Calc()
+    {
+        var isRange = true;
+        foreach (var line in _input)
         {
             if (string.IsNullOrWhiteSpace(line))
             {
@@ -32,10 +37,6 @@ internal class Aufgabe05 : IAufgabe
             }
         }
 
-    }
-
-    public string Calc()
-    {
         var result = 0;
 
         foreach (var number in _numbers)

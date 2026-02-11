@@ -4,24 +4,25 @@ namespace AdventOfCode.Year2021;
 
 internal class Aufgabe04 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<int> _numbers;
     private readonly List<(GridInt Numbers, GridBool Drawn)> _grids;
 
     public Aufgabe04()
     {
-        var input = Utilities.ReadInput(2021, 4);
-        _numbers = input[0].ToList<int>(',');
+        _input = Utilities.ReadInput(2021, 4);
+        _numbers = _input[0].ToList<int>(',');
         _grids = [];
-
-        for (int i = 2; i < input.Length; i += 6)
-        {
-            var grid = input[i..(i + 5)];
-            _grids.Add((CreateGrid(grid), new GridBool(5)));
-        }
     }
 
     public string Calc()
     {
+        for (int i = 2; i < _input.Length; i += 6)
+        {
+            var grid = _input[i..(i + 5)];
+            _grids.Add((CreateGrid(grid), new GridBool(5)));
+        }
+
         for (int i = 0; i < _numbers.Count; i++)
         {
             foreach (var grid in _grids)

@@ -4,21 +4,23 @@ namespace AdventOfCode.Year2016;
 
 internal class Aufgabe15b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly Disc[] _discs;
 
     public Aufgabe15b()
     {
-        var input = Utilities.ReadInput(2016, 15);
-        _discs = new Disc[input.Length + 1];
-        for (int i = 0; i < input.Length; i++)
-        {
-            _discs[i] = new(input[i]);
-        }
-        _discs[^1] = new(11, 0);
+        _input = Utilities.ReadInput(2016, 15);
+        _discs = new Disc[_input.Length + 1];
     }
 
     public string Calc()
     {
+        for (int i = 0; i < _input.Length; i++)
+        {
+            _discs[i] = new(_input[i]);
+        }
+        _discs[^1] = new(11, 0);
+
         for (int i = 0; i < int.MaxValue; i++)
         {
             if (Check(i))

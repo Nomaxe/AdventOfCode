@@ -5,23 +5,27 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe23b : IAufgabe
 {
-    private readonly Dictionary<string, HashSet<string>> _connections = [];
-    private HashSet<HashElement> _largestConnection = [];
+    private readonly string[] _input;
+    private readonly Dictionary<string, HashSet<string>> _connections;
+    private HashSet<HashElement> _largestConnection;
 
     public Aufgabe23b()
     {
-        var input = Utilities.ReadInput(2024, 23);
-        foreach (var line in input)
+        _input = Utilities.ReadInput(2024, 23);
+        _connections = new(_input.Length);
+        _largestConnection = new(_input.Length);
+    }
+
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             var split = line.Split('-');
             Add(split[0], split[1]);
             Add(split[1], split[0]);
             AddToLargestConnection(_largestConnection, split);
         }
-    }
 
-    public string Calc()
-    {
         while (_largestConnection.Count > 1)
         {
             HashSet<HashElement> nextLargestConnection = [];

@@ -4,35 +4,35 @@ namespace AdventOfCode.Year2021;
 
 internal class Aufgabe15b : IAufgabe
 {
+    private readonly GridInt _inputGrid;
     private readonly GridInt _grid;
     private readonly GridInt _distance;
 
     public Aufgabe15b()
     {
-        var grid = Grid.CreateIntGrid(2021, 15);
-        _grid = new(grid.SizeX * 5, grid.SizeY * 5);
-
-        for (int y = 0; y < grid.SizeY; y++)
-        {
-            for (int x = 0; x < grid.SizeX; x++)
-            {
-                var value = grid.GetValue(x, y);
-
-                for (int i = 0; i < 5; i++)
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        _grid.SetValue(x + grid.SizeX * i, y + grid.SizeY * j, GetValue(value, i + j));
-                    }
-                }
-            }
-        }
-
+        _inputGrid = Grid.CreateIntGrid(2021, 15);
+        _grid = new(_inputGrid.SizeX * 5, _inputGrid.SizeY * 5);
         _distance = new(_grid.SizeX, _grid.SizeY);
     }
 
     public string Calc()
     {
+        for (int y = 0; y < _inputGrid.SizeY; y++)
+        {
+            for (int x = 0; x < _inputGrid.SizeX; x++)
+            {
+                var value = _inputGrid.GetValue(x, y);
+
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        _grid.SetValue(x + _inputGrid.SizeX * i, y + _inputGrid.SizeY * j, GetValue(value, i + j));
+                    }
+                }
+            }
+        }
+
         Queue<Point> queue = new();
         queue.Enqueue(new(0, 0));
 

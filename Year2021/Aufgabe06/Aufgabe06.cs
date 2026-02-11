@@ -4,20 +4,21 @@ namespace AdventOfCode.Year2021;
 
 internal class Aufgabe06 : IAufgabe
 {
+    private readonly List<int> _input;
     private LargeCounter<int> _counter = [];
 
     public Aufgabe06()
     {
-        var input = Utilities.ReadInput(2021, 6);
-        var split = input[0].Split(',');
-        foreach (var item in split)
-        {
-            _counter.Add(int.Parse(item));
-        }
+        _input = Utilities.ReadInputAsList<int>(2021, 6, ',');
     }
 
     public string Calc()
     {
+        foreach (var item in _input)
+        {
+            _counter.Add(item);
+        }
+
         for (int i = 0; i < 80; i++)
         {
             LargeCounter<int> nextCounter = [];

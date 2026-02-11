@@ -4,14 +4,19 @@ namespace AdventOfCode.Year2023;
 
 internal class Aufgabe19 : IAufgabe
 {
+    private readonly string[] _input;
     private readonly List<Machine> _machines = [];
     private readonly Dictionary<string, string[]> _workflows = [];
 
     public Aufgabe19()
     {
-        var input = Utilities.ReadInput(2023, 19);
+        _input = Utilities.ReadInput(2023, 19);
+    }
+
+    public string Calc()
+    {
         bool whiteline = false;
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             if (string.IsNullOrEmpty(line))
             {
@@ -30,10 +35,7 @@ internal class Aufgabe19 : IAufgabe
                 _workflows.Add(line[..index], line[(index + 1)..^1].Split(','));
             }
         }
-    }
 
-    public string Calc()
-    {
         string workflow;
         int result = 0;
 

@@ -8,13 +8,7 @@ internal class Aufgabe11 : IAufgabe
 
     public Aufgabe11()
     {
-        var input = Utilities.ReadInput(2024, 11);
-        var split = input[0].Split(' ');
-        _currentList = new(split.Length);
-        foreach (var number in split)
-        {
-            _currentList.Add(ulong.Parse(number));
-        }
+        _currentList = Utilities.ReadInputAsList<ulong>(2024, 11, ' ');
     }
 
     public string Calc()

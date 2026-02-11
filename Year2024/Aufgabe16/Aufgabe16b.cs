@@ -5,25 +5,30 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe16b : IAufgabe
 {
+    private readonly string[] _input;
     private readonly char[,] _map;
     private readonly SortedDictionary<Point, Dictionary<Direction, int>> _length = [];
     private readonly Queue<Point> _pointsToCheck = [];
     private readonly List<int> _rotateCost = [RotateCost, RotateCost * 2, RotateCost];
-    private readonly Point _endPoint;
+    private Point _endPoint;
 
     private const int RotateCost = 1000;
 
     public Aufgabe16b()
     {
-        var input = Utilities.ReadInput(2024, 16);
-        _map = new char[input.Length, input[0].Length];
+        _input = Utilities.ReadInput(2024, 16);
+        _map = new char[_input.Length, _input[0].Length];
+    }
+
+    public string Calc()
+    {
         Point startPoint = new();
 
-        for (int y = 0; y < input.Length; y++)
+        for (int y = 0; y < _input.Length; y++)
         {
-            for (int x = 0; x < input[0].Length; x++)
+            for (int x = 0; x < _input[0].Length; x++)
             {
-                _map[y, x] = input[y][x];
+                _map[y, x] = _input[y][x];
 
                 if (_map[y, x] == 'S')
                 {
@@ -40,10 +45,7 @@ internal class Aufgabe16b : IAufgabe
         _length[startPoint].Add(Direction.Right, 0);
         AddRotate(startPoint);
         AddPointsToCheck(startPoint, 0);
-    }
 
-    public string Calc()
-    {
         while (_pointsToCheck.Count > 0)
         {
             var point = _pointsToCheck.Dequeue();

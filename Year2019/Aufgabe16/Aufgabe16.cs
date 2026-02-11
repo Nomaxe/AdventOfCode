@@ -10,7 +10,7 @@ internal class Aufgabe16 : IAufgabe
 
     public Aufgabe16()
     {
-        _value = Utilities.ReadInput(2019, 16)[0].Select(x => x.ToNumber()).ToArray();
+        _value = Utilities.ReadInputAsString(2019, 16).Select(x => x.ToNumber()).ToArray();
     }
 
     public string Calc()

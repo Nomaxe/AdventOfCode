@@ -92,14 +92,6 @@ internal class DictionaryHashSet<TKey, TItem> : IEnumerable<KeyValuePair<TKey, H
         }
     }
 
-    public void RemoveItemAtAllKeysExcept(TKey key, TItem item)
-    {
-        foreach (var keyValuePair in _items.Where(x => !x.Key.Equals(key)))
-        {
-            keyValuePair.Value.Remove(item);
-        }
-    }
-
     public void IntersectWith(TKey key, IEnumerable<TItem> hashset)
     {
         ref var list = ref CollectionsMarshal.GetValueRefOrAddDefault(_items, key, out _);

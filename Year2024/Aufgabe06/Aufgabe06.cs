@@ -4,7 +4,7 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe06 : IAufgabe
 {
-    private readonly char[,] _input;
+    private readonly char[,] _grid;
     private readonly char[,] _orginal;
     private readonly List<(int PosX, int PosY)> _visitedBlocks;
     private Direction _direction;
@@ -14,21 +14,21 @@ internal class Aufgabe06 : IAufgabe
     public Aufgabe06()
     {
         var input = Utilities.ReadInput(2024, 6);
-        _input = new char[input.Length, input[0].Length];
+        _grid = new char[input.Length, input[0].Length];
         _orginal = new char[input.Length, input[0].Length];
         _visitedBlocks = [];
         for (var x = 0; x < input[0].Length; x++)
         {
             for (var y = 0; y < input.Length; y++)
             {
-                _input[y, x] = input[y][x];
+                _grid[y, x] = input[y][x];
             }
         }
 
         _currentPosY = Array.FindIndex(input, x => x.Contains('^'));
         _currentPosX = input[_currentPosY].IndexOf('^');
         _direction = Direction.Up;
-        Array.Copy(_input, _orginal, _input.Length);
+        Array.Copy(_grid, _orginal, _grid.Length);
     }
 
     public string Calc()
@@ -38,8 +38,8 @@ internal class Aufgabe06 : IAufgabe
 
         while (!IsOutOfBounds(posX, posY))
         {
-            _input[_currentPosY, _currentPosX] = 'X';
-            var nextElement = _input[posY, posX];
+            _grid[_currentPosY, _currentPosX] = 'X';
+            var nextElement = _grid[posY, posX];
             switch (nextElement)
             {
                 case '.':
@@ -63,11 +63,11 @@ internal class Aufgabe06 : IAufgabe
         ;
 
         int result = 0;
-        for (var x = 0; x < _input.GetLength(1); x++)
+        for (var x = 0; x < _grid.GetLength(1); x++)
         {
-            for (var y = 0; y < _input.GetLength(0); y++)
+            for (var y = 0; y < _grid.GetLength(0); y++)
             {
-                if (_input[y, x] == 'X')
+                if (_grid[y, x] == 'X')
                 {
                     result++;
                 }
@@ -91,7 +91,7 @@ internal class Aufgabe06 : IAufgabe
 
     private bool IsOutOfBounds(int posX, int posY)
     {
-        return posY < 0 || posY >= _input.GetLength(0) || posX < 0 || posX >= _input.GetLength(1);
+        return posY < 0 || posY >= _grid.GetLength(0) || posX < 0 || posX >= _grid.GetLength(1);
     }
 
     private void SetNextDirection()

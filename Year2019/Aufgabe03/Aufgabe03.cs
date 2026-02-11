@@ -6,7 +6,7 @@ namespace AdventOfCode.Year2019;
 internal class Aufgabe03 : IAufgabe
 {
     private readonly string[] _input;
-    private DictionaryHashSet<Axis, (Point From, Point To)> _wire;
+    private readonly DictionaryHashSet<Axis, (Point From, Point To)> _wire;
 
     public Aufgabe03()
     {

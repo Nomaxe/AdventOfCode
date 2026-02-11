@@ -4,13 +4,19 @@ namespace AdventOfCode.Year2024;
 
 internal class Aufgabe05 : IAufgabe
 {
+    private readonly string[] _input;
+
+    public Aufgabe05()
+    {
+        _input = Utilities.ReadInput(2024, 5);
+    }
+
     public string Calc()
     {
-        var input = Utilities.ReadInput(2024, 5);
         bool emptyLine = false;
         List<PageNumbers> settings = [];
         int result = 0;
-        foreach (var line in input)
+        foreach (var line in _input)
         {
             if (string.IsNullOrEmpty(line))
             {

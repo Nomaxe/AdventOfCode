@@ -7,7 +7,7 @@ internal class Aufgabe23 : IAufgabe
 {
     private readonly string[] _input;
     private int _currentIndex;
-    private Dictionary<char, uint> _registers;
+    private readonly Dictionary<char, uint> _registers;
 
     public Aufgabe23()
     {

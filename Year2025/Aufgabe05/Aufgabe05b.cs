@@ -4,27 +4,27 @@ namespace AdventOfCode.Year2025;
 
 internal class Aufgabe05b : IAufgabe
 {
+    private readonly string[] _input;
     private List<Range> _range;
 
     public Aufgabe05b()
     {
-        var input = Utilities.ReadInput(2025, 5);
+        _input = Utilities.ReadInput(2025, 5);
         _range = [];
+    }
 
-        foreach (var line in input)
+    public string Calc()
+    {
+        foreach (var line in _input)
         {
             if (string.IsNullOrWhiteSpace(line))
             {
-                return;
+                break;
             }
 
             _range.Add(new(line));
         }
 
-    }
-
-    public string Calc()
-    {
         _range = _range.OrderBy(x => x.From).ToList();
 
         for (int i = 0; i < _range.Count - 1; i++)

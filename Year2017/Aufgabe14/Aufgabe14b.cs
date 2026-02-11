@@ -12,7 +12,7 @@ internal class Aufgabe14b : IAufgabe
 
     public Aufgabe14b()
     {
-        _input = Utilities.ReadInput(2017, 14)[0];
+        _input = Utilities.ReadInputAsString(2017, 14);
         _pointsToCheck = [];
     }
 
