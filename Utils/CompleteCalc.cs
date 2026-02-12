@@ -33,7 +33,6 @@ internal class CompleteCalc
 
         _test = new(_types.Count);
         _duration = new(_types.Count);
-
     }
 
     public void Calc()
