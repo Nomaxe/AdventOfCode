@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Utils;
 
@@ -100,6 +101,18 @@ public static partial class StringExtensions
             }
 
             return array;
+        }
+
+        public List<T> ToSingleNumbers<T>()
+        {
+            List<T> list = new(s.Length);
+
+            foreach (var character in s)
+            {
+                list.Add((T)Convert.ChangeType(character.ToNumber(), typeof(T)));
+            }
+
+            return list;
         }
 
         public bool IsLowerCase()

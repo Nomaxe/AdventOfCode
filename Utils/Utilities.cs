@@ -73,4 +73,9 @@ internal static class Utilities
     {
         return (T)Convert.ChangeType(ReadInputAsString(year, day), typeof(T));
     }
+
+    public static List<T> ReadInputAsSingleNumbers<T>(int year, int day)
+    {
+        return ReadInputAsString(year, day).ToSingleNumbers<T>();
+    }
 }
