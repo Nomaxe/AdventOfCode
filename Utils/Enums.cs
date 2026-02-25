@@ -10,6 +10,16 @@ internal static class Enums
         Up
     }
 
+    internal enum DirectionHex
+    {
+        UpRight,
+        Right,
+        DownRight,
+        DownLeft,
+        Left,
+        UpLeft
+    }
+
     internal enum Axis
     {
         Vertical,
