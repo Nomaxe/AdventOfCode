@@ -13,7 +13,7 @@ internal class CompleteCalc
     private readonly Dictionary<Type, TimeSpan> _duration;
     private TimeSpan _completeTime = TimeSpan.Zero;
 
-    private const int FullYears = 7; //last Day Part 2 is a single star, if you have all before
+    private const int FullYears = 8; //last Day Part 2 is a single star, if you have all before
 
     private const int PosYear = 5;
     private const int PosDay = PosYear + 5;
