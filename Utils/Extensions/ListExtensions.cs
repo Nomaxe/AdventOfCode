@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode.Utils;
+﻿using System.Numerics;
+
+namespace AdventOfCode.Utils;
 
 internal static partial class ListExtensions
 {
@@ -22,9 +24,9 @@ internal static partial class ListExtensions
 
     extension(List<bool> list)
     {
-        internal ulong GetDecimalNumber()
+        internal long GetDecimalNumber()
         {
-            ulong result = 0;
+            long result = 0;
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -33,7 +35,22 @@ internal static partial class ListExtensions
                     continue;
                 }
 
-                result += (ulong)Math.Pow(2, list.Count - i - 1);
+                result += (long)Math.Pow(2, list.Count - i - 1);
+            }
+
+            return result;
+        }
+    }
+
+    extension<T>(List<T> list) where T : INumber<T>
+    {
+        internal long Mul()
+        {
+            long result = 1;
+
+            foreach (var number in list)
+            {
+                result *= long.CreateChecked(number);
             }
 
             return result;

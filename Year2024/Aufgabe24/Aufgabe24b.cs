@@ -126,7 +126,7 @@ internal class Aufgabe24b : IAufgabe
         return FindGate(gate.First().Result);
     }
 
-    private ulong GetDecimalNumber(char c)
+    private long GetDecimalNumber(char c)
     {
         return _wires.Where(x => x.Key.StartsWith(c)).OrderByDescending(x => x.Key).Select(x => x.Value).ToList().GetDecimalNumber();
     }

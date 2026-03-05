@@ -1,8 +1,8 @@
-﻿using AdventOfCode.Year2020;
+﻿using AdventOfCode.Year2021;
 using AdventOfCode.Utils;
 
 #if DEBUG
-Aufgabe25 aufgabe = new();
+Aufgabe16b aufgabe = new();
 Console.WriteLine(aufgabe.Calc());
 #else
 new CompleteCalc().Calc();
