@@ -63,6 +63,11 @@ internal readonly struct Point : IComparable<Point>
         return int.Abs(X - other.X) <= 1 && int.Abs(Y - other.Y) <= 1;
     }
 
+    public readonly Point Move(int horizontal, int vertical)
+    {
+        return new Point(X + horizontal, Y + vertical);
+    }
+
     public readonly Point Move(Direction direction)
     {
         return Move(direction, 1);
