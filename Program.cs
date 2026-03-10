@@ -2,7 +2,7 @@
 using AdventOfCode.Utils;
 
 #if DEBUG
-Aufgabe16b aufgabe = new();
+Aufgabe17b aufgabe = new();
 Console.WriteLine(aufgabe.Calc());
 #else
 new CompleteCalc().Calc();
